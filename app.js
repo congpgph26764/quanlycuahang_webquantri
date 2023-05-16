@@ -14,7 +14,7 @@ var invoiceRouter = require('./routes/invoice');
 var statisticRouter = require('./routes/statistic');
 var homeRouter = require('./routes/home');
 // var tkRouter = require('./routes/taikhoan');
-var accountRouter = require('./routes/accounts');
+var loginRouter = require('./routes/login');
 
 var app = express();
 
@@ -43,7 +43,7 @@ app.use('/',invoiceRouter);
 app.use('/',statisticRouter);
 app.use('/',homeRouter);
 // app.use('/',tkRouter);
-app.use('/accounts',accountRouter);
+app.use('/',loginRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

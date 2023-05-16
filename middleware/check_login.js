@@ -3,13 +3,13 @@ exports.yeu_cau_dang_nhap = (req, res, next)=>{
         // có tồn tại thông tin user login : đã đăng nhập
         next(); 
     }else{
-        return res.redirect('/accounts/login');
+        return res.redirect('/login');
     }
 }
 exports.khong_yc_dang_nhap = (req, res, next)=>{
     if(!req.session.userLogin){
         next(); 
     }else {
-        return  res.redirect('/accounts');
+        return  res.redirect('/');
     }
 }
