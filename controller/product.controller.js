@@ -1,5 +1,5 @@
 const fs = require('fs');
-const myModel = require('../models/product.model');
+const myModel = require('../models/model');
 exports.list = async (req,res,next)=>{
     res.render('product/listproduct');
 }

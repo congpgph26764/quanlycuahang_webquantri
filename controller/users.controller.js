@@ -1,5 +1,5 @@
 const fs=require('fs');
-const myModel=require('../models/users.model')
+const myModel=require('../models/model')
 
 
 

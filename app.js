@@ -16,6 +16,8 @@ var homeRouter = require('./routes/home');
 // var tkRouter = require('./routes/taikhoan');
 var loginRouter = require('./routes/login');
 
+var apiRouter = require('./routes/api');
+
 var app = express();
 
 // view engine setup
@@ -45,6 +47,8 @@ app.use('/',homeRouter);
 // app.use('/',tkRouter);
 app.use('/',loginRouter);
 
+app.use('/api', apiRouter);
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -58,7 +62,20 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  
+  if (req.originalUrl.indexOf('/api')==0) {
+    // link bat dau bang api la truy cap vao trang API => thong bao loi kieu api
+    res.json( {
+      status: 0,
+      msg: err.message
+
+    } )
+  } else{
+    // render the error page
+  
+    res.render('error');
+  }
+
 });
 
 module.exports = app;
