@@ -1,4 +1,4 @@
-const db = require('../models/users.model');
+const db = require('../models/model');
 
 exports.Reg = async (req, res, next) =>{
     let msg = '';
@@ -12,9 +12,9 @@ exports.Reg = async (req, res, next) =>{
         // Kiem tra hop le cac phan khac neu co ...
 
         // Xu li csdl
-        let objU = new db.usersModel();
-        objU.username = req.body.username;
-        objU.passwd = req.body.passwd;
+        let objU = new db.userModel();
+        objU.name = req.body.username;
+        objU.password = req.body.passwd;
         objU.email = req.body.email;
         objU.role = req.body.role;
 
@@ -38,19 +38,25 @@ exports.Login = async (req, res, next) =>{
         
 
         try {
-            let objU = await db.usersModel.findOne({username: req.body.username});
+            let objU = await db.userModel.findOne({email: req.body.email});
             console.log(objU);
-            //Lay duoc thong tin tai khoan ===> Kiem tra pass
-            if(objU != null){
-                if(objU.passwd == req.body.passwd){
-                    req.session.userLogin = objU;
 
-                    // Tu chuyen trang chu hoc trang nao do
+            if(objU){
+                
+                
+                    if(objU.password == req.body.passwd){
+                        if ((objU.role).toLowerCase() == "admin") {
+                            req.session.userLogin = objU;
 
-                    return res.redirect('/');
-                }else{
-                    msg = 'Sai Password';
-                }
+                            return res.redirect('/');
+                        }
+                        else{
+                            msg = 'Không có quyền đăng nhập';
+                        }
+                    }else{
+                        msg = 'Sai Password';
+                    }
+
             }else{
                 msg = 'Tài khoản không tồn tại';
             }
