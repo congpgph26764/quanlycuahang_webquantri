@@ -1,16 +1,19 @@
 const md = require('../../models/model');
 
 exports.listUser = async  (req, res, next) =>{
-    let dataReturn = {
-        status: 1,
-        msg: 'ok'
-    }
     // code su ly lay danh sach o day
     let list = [];
 
+    let keyword = req.query.keyword;
+    let objWhere = {};
+
     try {
-        list = await md.userModel.find();
-        dataReturn.data = list
+        
+        if(keyword !== '') objWhere.email = new RegExp(keyword, 'i');
+
+        list = await md.userModel.find( objWhere );
+
+        dataReturn = list;
     } catch (error) {
         dataReturn.msg = error.message
     }
