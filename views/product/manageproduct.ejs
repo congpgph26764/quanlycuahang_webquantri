@@ -1,3 +1,148 @@
 <%- include('../inc/top', { title: 'MANAGE PRODUCT' }); %>
-<p class="text-center fs-3 fw-bolder fw-bold" style="margin-top: 20px;">Manage Product</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Quản lý sản phẩm</title>
+    <style>
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        label {
+            margin-bottom: 10px;
+        }
+        
+        input[type=text], select {
+            padding: 6px;
+            width: 250px;
+            margin-bottom: 10px;
+        }
+        
+        input[type=submit] {
+            padding: 6px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width:80%;
+            margin: 0 auto;
+        }
+        
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: grey;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Quản lý sản phẩm</h1>
+
+    <form  class="d-grid gap-2 col-5 mx-auto" method="post">
+        <div class="row">
+            <!-- product title -->
+            <div class="col-md-12 mt-3">
+                <div class="form-group">
+                    <label for="prodcuct_title">Product Name<span style="color: red;">*</span></label>
+                    <input type="text" class="form-control" name="name" required>
+                    <span id="error" class="text-danger"></span>
+                </div>
+    
+            </div>
+    
+            
+    
+    
+            <div class="col-md-6 mt-3">
+                <div class="form-group">
+                    <label for="price">Price<span style="color: red;">*</span></label>
+                    <input type="number" class="form-control" name="price" min="0" value=0 >
+                    <span id="error" class="text-danger"></span>
+                </div>
+    
+            </div>
+
+            <div class="col-md-6 mt-3">
+                <div class="form-group">
+                    <label for="quantity">Quantity<span style="color: red;">*</span></label>
+                    <input type="number" class="form-control" name="quantity" min="0" value=0 >
+                    <span id="error" class="text-danger"></span>
+                </div>
+    
+            </div>
+        
+            <div class="col-md-12 mt-3">
+                <div class="form-group">
+                    <label for="product_image">Product Image <span style="color: red;">*</span></label>
+                    <input type="file" class="form-control" name="image">
+                    <span id="image_error" class="text-danger"></span>
+                </div>
+            </div>
+
+    
+            <!-- Long/breif Description -->
+            <div class="col-md-12 mt-3">
+                <div class="form-group">
+                    <label for="long_description">Description</label>
+                    <textarea name="description" rows="5" class="form-control" ></textarea>
+                    <span id="long_description_error" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+
+    
+        <div class="col-md-12 text-center mt-4">
+          <button type="submit" class="btn btn-dark btn-block add-more-thumbnail">Add Product</button>
+      </div>
+    </form>
+
+    <h2 style="text-align: center;">Danh sách sản phẩm</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Thao tác</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Sản phẩm 1</td>
+            <td>100,000 VND</td>
+            <td>2000</td>
+            <td>
+                <a href="product-detail.html?id=1">Xem</a>
+                <a href="#">Sửa</a>
+                <a href="#">Xóa</a>
+            </td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Sản phẩm 2</td>
+            <td>200,000 VND</td>
+            <td>1560</td>
+            <td>
+                <a href="product-detail.html?id=2">Xem</a>
+                <a href="#">Sửa</a>
+                <a href="#">Xóa</a>
+            </td>
+        </tr>
+        <!-- Thêm các dòng tương tự cho danh sách sản phẩm -->
+    </table>
+</body>
+</html>
 <%- include('../inc/bottom'); %>
