@@ -1,3 +1,272 @@
 <%- include('../inc/top', { title: 'STAFF MANAGER' }); %>
-<p class="text-center fs-3 fw-bolder fw-bold" style="margin-top: 20px;">Staff Manager</p>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Giao diện quản lý nhân viên</title>
+    <style>
+        /* CSS cho phần head */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        /* CSS cho phần content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .employee-list {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ccc;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        .add-employee-form input[type="text"],
+        .add-employee-form input[type="email"],
+        .add-employee-form input[type="tel"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .add-employee-form input[type="submit"] {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .edit-employee-form input[type="submit"],
+        .delete-employee-form input[type="submit"] {
+            background-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Giao diện quản lý nhân viên</h1>
+    </header>
+
+    <div class="container">
+        <div class="employee-list">
+            <h2>Danh sách nhân viên</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Họ tên</th>
+                        <th>Email</th>
+                        <th>Số điện thoại</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Nguyễn Văn A</td>
+                        <td>example1@example.com</td>
+                        <td>0123456789</td>
+                        <td>
+                            <button onclick="editEmployee(1)">Sửa</button>
+                            <button onclick="deleteEmployee(1)">Xoá</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Trần Thị B</td>
+                        <td>example2@example.com</td>
+                        <td>0987654321</td>
+                        <td>
+                            <button onclick="editEmployee(2)">Sửa</button>
+                            <button onclick="deleteEmployee(2)">Xoá</button>
+                        </td>
+                    </tr>
+                    <!-- Thêm dữ liệu nhân viên khác -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="add-employee-form">
+            <h2>Thêm nhân viên</h2>
+            <form id="addEmployeeForm">
+                <input type="text" id="fullName" placeholder="Họ tên" required>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="tel" id="phoneNumber" placeholder="Số điện thoại" required>
+                <input type="submit" value="Thêm">
+            </form>
+            
+            <h2>Sửa nhân viên</h2>
+            <form id="editEmployeeForm" style="display: none;">
+                <input type="text" id="editFullName" placeholder="Họ tên" required>
+                <input type="email" id="editEmail" placeholder="Email" required>
+                <input type="tel" id="editPhoneNumber" placeholder="Số điện thoại" required>
+                <input type="submit" value="Lưu">
+            </form>
+            
+            <script>
+                // Lưu trữ danh sách nhân viên tạm thời
+                let employees = [
+                    { id: 1, fullName: "Nguyễn Văn A", email: "example1@example.com", phoneNumber: "0123456789" },
+                    { id: 2, fullName: "Trần Thị B", email: "example2@example.com", phoneNumber: "0987654321" }
+                ];
+            
+                // Hàm hiển thị danh sách nhân viên
+                function displayEmployeeList() {
+                    const tableBody = document.querySelector("tbody");
+                    tableBody.innerHTML = "";
+            
+                    employees.forEach(employee => {
+                        const row = document.createElement("tr");
+                        row.innerHTML = `
+                            <td>${employee.id}</td>
+                            <td>${employee.fullName}</td>
+                            <td>${employee.email}</td>
+                            <td>${employee.phoneNumber}</td>
+                            <td>
+                                <button onclick="editEmployee(${employee.id})">Sửa</button>
+                                <button onclick="deleteEmployee(${employee.id})">Xoá</button>
+                            </td>
+                        `;
+                        tableBody.appendChild(row);
+                    });
+                }
+            
+                // Hàm thêm nhân viên
+                function addEmployee(event) {
+                    event.preventDefault();
+                    
+                    const fullName = document.getElementById("fullName").value;
+                    const email = document.getElementById("email").value;
+                    const phoneNumber = document.getElementById("phoneNumber").value;
+            
+                    const id = employees.length > 0 ? employees[employees.length - 1].id + 1 : 1;
+                    employees.push({ id, fullName, email, phoneNumber });
+            
+                    document.getElementById("addEmployeeForm").reset();
+                    displayEmployeeList();
+                }
+            
+                // Hàm sửa nhân viên
+                function editEmployee(id) {
+                    const employee = employees.find(emp => emp.id === id);
+                    if (employee) {
+                        document.getElementById("editEmployeeForm").style.display = "block";
+                        document.getElementById("editFullName").value = employee.fullName;
+                        document.getElementById("editEmail").value = employee.email;
+                        document.getElementById("editPhoneNumber").value = employee.phoneNumber;
+            
+                        document.getElementById("editEmployeeForm").onsubmit = function(event) {
+                            event.preventDefault();
+                            
+                            const fullName = document.getElementById("editFullName").value;
+                            const email = document.getElementById("editEmail").value;
+                            const phoneNumber = document.getElementById("editPhoneNumber").value;
+            
+                            employee.fullName = fullName;
+                            employee.email = email;
+                            employee.phoneNumber = phoneNumber;
+            
+                            document.getElementById("editEmployeeForm").reset();
+                            document.getElementById("editEmployeeForm").style.display = "none";
+                            displayEmployeeList();
+                        };
+                    }
+                }
+                // Hàm xoá nhân viên
+            function deleteEmployee(id) {
+                const index = employees.findIndex(emp => emp.id === id);
+                if (index !== -1) {
+                    employees.splice(index, 1);
+                    displayEmployeeList();
+                }
+            }
+
+            // Gắn sự kiện submit cho form thêm nhân viên
+            document.getElementById("addEmployeeForm").addEventListener("submit", addEmployee);
+
+            // Hiển thị danh sách nhân viên ban đầu
+            displayEmployeeList();
+        </script>
+    </div>
+
+    <div id="deleteEmployeeModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Xoá nhân viên</h2>
+            <p>Bạn có chắc chắn muốn xoá nhân viên này?</p>
+            <div>
+                <button id="confirmDelete" class="delete-button">Xoá</button>
+                <button id="cancelDelete" class="cancel-button">Hủy</button>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Hàm hiển thị modal xoá nhân viên
+        function displayDeleteModal(id) {
+            const modal = document.getElementById("deleteEmployeeModal");
+            modal.style.display = "block";
+    
+            const confirmDeleteButton = document.getElementById("confirmDelete");
+            confirmDeleteButton.addEventListener("click", function() {
+                deleteEmployee(id);
+                modal.style.display = "none";
+            });
+    
+            const cancelDeleteButton = document.getElementById("cancelDelete");
+            cancelDeleteButton.addEventListener("click", function() {
+                modal.style.display = "none";
+            });
+    
+            window.onclick = function(event) {
+                if (event.target === modal) {
+                    modal.style.display = "none";
+                }
+            };
+        }
+    
+        // Gắn sự kiện xoá nhân viên
+        function deleteEmployee(id) {
+            const index = employees.findIndex(emp => emp.id === id);
+            if (index !== -1) {
+                employees.splice(index, 1);
+                displayEmployeeList();
+            }
+        }
+    
+        // Hiển thị danh sách nhân viên ban đầu
+        displayEmployeeList();
+    </script>
+    
+
+
+
 <%- include('../inc/bottom'); %>
