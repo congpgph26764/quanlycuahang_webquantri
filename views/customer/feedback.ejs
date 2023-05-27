@@ -1,0 +1,98 @@
+<%- include('../inc/top', { title: 'FEEDBACK' }); %>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Phản hồi từ khách hàng</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f1f1f1;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .feedback-list {
+            margin-bottom: 40px;
+        }
+
+        .feedback-list h2 {
+            margin-bottom: 10px;
+        }
+
+        .feedback-item {
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .customer-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .feedback-content {
+            margin-bottom: 10px;
+        }
+
+        .reply h4 {
+            margin-bottom: 5px;
+        }
+
+        .reply-content {
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Phản hồi từ khách hàng</h1>
+
+        <div class="feedback-list">
+            <h2>Danh sách phản hồi</h2>
+            <div class="feedback-item">
+                <h3>Tên khách hàng 1</h3>
+                <p>Đây là bình luận 1</p>
+                <div class="reply">
+                    <h4>Trả lời:</h4>
+                    <p>Đây là phản hồi 1</p>
+                </div>
+            </div>
+            <div class="feedback-item">
+                <h3>Tên khách hàng 2</h3>
+                <p>Đây là bình luận 2</p>
+                <div class="reply">
+                    <h4>Trả lời:</h4>
+                    <p>Đây là phản hồi 2</p>
+                </div>
+            </div>
+            <!-- Thêm các mục phản hồi khác vào đây -->
+        </div>
+
+        <div class="reply-form">
+            <h2>Gửi phản hồi</h2>
+            <form action="submit.php" method="post">
+                <label for="name">Họ và tên:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="message">Nội dung phản hồi:</label>
+                <textarea id="message" name="message" required></textarea>
+
+                <input type="submit" value="Gửi phản hồi">
+            </form>
+        </div>
+    </div>
+</body>
+</html>
+<%- include('../inc/bottom'); %>

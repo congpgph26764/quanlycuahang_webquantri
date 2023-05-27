@@ -1,0 +1,118 @@
+<%- include('../inc/top', { title: 'CUSTOMER MANAGER' }); %>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Quản lý khách hàng</title>
+  <style>
+    /* CSS cho giao diện */
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    h1 {
+      text-align: center;
+    }
+    
+    table {
+      width: 80%;
+      border-collapse: collapse;
+      margin: 0 auto
+    }
+    
+    th, td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    .button {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+    }
+    
+    .button-danger {
+      background-color: #f44336;
+    }
+    
+    /* CSS cho form */
+    .form-container {
+      max-width: 400px;
+      margin: 0 auto;
+    }
+    
+    .form-group {
+      margin-bottom: 16px;
+    }
+    
+    .form-group label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Quản lý khách hàng</h1>
+
+  <!-- Danh sách khách hàng -->
+  <table>
+    <tr>
+      <th>ID</th>
+      <th>Tên</th>
+      <th>Email</th>
+      <th>Thao tác</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Nguyễn Văn A</td>
+      <td>example1@gmail.com</td>
+      <td>
+        <button class="button">Sửa</button>
+        <button class="button button-danger">Xoá</button>
+      </td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Nguyễn Văn B</td>
+      <td>example2@gmail.com</td>
+      <td>
+        <button class="button">Sửa</button>
+        <button class="button button-danger">Xoá</button>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Form thêm/sửa khách hàng -->
+  <div class="form-container">
+    <h2>Thêm/Sửa khách hàng</h2>
+    <form>
+      <div class="form-group">
+        <label for="name">Tên:</label>
+        <input type="text" id="name" name="name" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+	</div>
+	<button class="button">Lưu</button>
+	</form>
+
+  </div>
+</body>
+</html>
+<%- include('../inc/bottom'); %>
