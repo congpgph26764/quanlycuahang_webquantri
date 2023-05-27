@@ -1,3 +1,158 @@
 <%- include('../inc/top', { title: 'STATISTIC' }); %>
-<p class="text-center fs-3 fw-bolder fw-bold" style="margin-top: 20px;">Statistic</p>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Thống kê</title>
+  <style>
+    /* CSS cho phần header */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* CSS cho phần menu */
+    nav {
+      background-color: #f4f4f4;
+      padding: 10px;
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin-right: 10px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      padding: 5px 10px;
+    }
+
+    /* CSS cho phần nội dung */
+    .content {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+    }
+
+    /* CSS cho bảng thống kê */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    table th, table td {
+      padding: 8px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    table th {
+      background-color: #f4f4f4;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Thống kê</h1>
+  </header>
+
+  <nav>
+    <ul>
+      <li><a href="#san-pham">Thống kê sản phẩm</a></li>
+      <li><a href="#doanh-thu">Thống kê doanh thu</a></li>
+      <li><a href="#nhan-vien">Thống kê nhân viên</a></li>
+    </ul>
+  </nav>
+
+  <div class="content">
+    <section id="san-pham">
+      <h2>Thống kê sản phẩm</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng bán được</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Sản phẩm A</td>
+            <td>100</td>
+          </tr>
+          <tr>
+            <td>Sản phẩm B</td>
+            <td>75</td>
+          </tr>
+          <tr>
+            <td>Sản phẩm C</td>
+            <td>50</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="doanh-thu">
+        <h2>Thống kê doanh thu</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Tháng</th>
+                <th>Doanh thu</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Tháng 1</td>
+                    <td>5000 USD</td>
+                </tr>
+                <tr>
+                    <td>Tháng 2</td>
+                    <td>6000 USD</td>
+                </tr>
+                <tr>
+                    <td>Tháng 3</td>
+                    <td>7000 USD</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <section id="nhan-vien">
+        <h2>Thống kê nhân viên</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Tên nhân viên</th>
+              <th>Chức vụ</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Nhân viên A</td>
+              <td>Nhân viên bán hàng</td>
+            </tr>
+            <tr>
+              <td>Nhân viên B</td>
+              <td>Nhân viên kỹ thuật</td>
+            </tr>
+            <tr>
+              <td>Nhân viên C</td>
+              <td>Quản lý</td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+    </div>
+</body>
+</html>     
+
 <%- include('../inc/bottom'); %>
