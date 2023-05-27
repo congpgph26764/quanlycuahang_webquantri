@@ -2,7 +2,7 @@ var db = require('./db');
 const userSchema = new db.mongoose.Schema(
     {
 
-        name: { type: String , required: true }, 
+        name: { type: String , required: false }, 
         role: { type: String, required: true},
         email: { type: String, required: true},
         phone: { type: String, required: false},
