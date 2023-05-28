@@ -1,16 +1,13 @@
 const md = require('../../models/model');
 
 exports.listCat = async  (req, res, next) =>{
-    let dataReturn = {
-        status: 1,
-        msg: 'ok'
-    }
+
     // code su ly lay danh sach o day'
     let list = [];
 
     try {
         list = await md.catModel.find();
-        dataReturn.data = list
+        dataReturn = list
     } catch (error) {
         dataReturn.msg = error.message
     }

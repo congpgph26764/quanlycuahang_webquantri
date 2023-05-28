@@ -1,16 +1,16 @@
 const md = require('../../models/model');
 
 exports.listPro = async  (req, res, next) =>{
-    let dataReturn = {
-        status: 1,
-        msg: 'ok'
-    }
     // code su ly lay danh sach o day
     let list = [];
 
+
     try {
-        list = await md.proModel.find();
-        dataReturn.data = list
+
+
+        list = await md.proModel.find( );
+
+        dataReturn = list
     } catch (error) {
         dataReturn.msg = error.message
     }
