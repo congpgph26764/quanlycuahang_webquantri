@@ -63,9 +63,11 @@ const detailed_billSchema = new db.mongoose.Schema(
 
 const feedbackSchema = new db.mongoose.Schema(
     {
-
+        fullname: { type: String , required: true },
+        phone: { type: String , required: true },
+        email: { type: String , required: true },
         comment: { type: String , required: true }, 
-        id_user: { type: db.mongoose.Schema.Types.ObjectId, ref: 'userModel'},
+        image: { type: String , required: false },
     },
     {
         collection: 'feedback'

@@ -1,16 +1,19 @@
 const md = require('../../models/model');
 
 exports.listPro = async  (req, res, next) =>{
-    let dataReturn = {
-        status: 1,
-        msg: 'ok'
-    }
     // code su ly lay danh sach o day
     let list = [];
 
+    let keyword = req.query.keyword;
+    let objWhere = {};
+
     try {
+
+        if(keyword !== '') objWhere.name = new RegExp(keyword, 'i');
+
         list = await md.proModel.find();
-        dataReturn.data = list
+
+        dataReturn = list
     } catch (error) {
         dataReturn.msg = error.message
     }
