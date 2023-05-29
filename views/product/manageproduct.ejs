@@ -51,64 +51,110 @@
 <body>
     <h1 style="text-align: center;">Quản lý sản phẩm</h1>
 
-    <form  class="d-grid gap-2 col-5 mx-auto" method="post">
-        <div class="row">
-            <!-- product title -->
-            <div class="col-md-12 mt-3">
-                <div class="form-group">
-                    <label for="prodcuct_title">Product Name<span style="color: red;">*</span></label>
-                    <input type="text" class="form-control" name="name" required>
-                    <span id="error" class="text-danger"></span>
-                </div>
-    
-            </div>
-    
-            
-    
-    
-            <div class="col-md-6 mt-3">
-                <div class="form-group">
-                    <label for="price">Price<span style="color: red;">*</span></label>
-                    <input type="number" class="form-control" name="price" min="0" value=0 >
-                    <span id="error" class="text-danger"></span>
-                </div>
-    
-            </div>
+    <div class="row">
+        <div class="col-md-12 ">
+            <div class="d-flex flex-row-reverse" style="margin-bottom: 5px;"><button type="button"
+                    class="btn btn-success " onclick="location.href='http://localhost:3000/product/add'">Thêm vật nuôi</button></div>
+            <div class="card shadow-sm p-3 mb-5 bg-white rounded" style="padding: 30px;">
+                <div class="table-wrap ">
+                    <table id="myTable" class="table table-responsive-xl  ">
+                        <thead class="thead-dark">
+                            <tr>
 
-            <div class="col-md-6 mt-3">
-                <div class="form-group">
-                    <label for="quantity">Quantity<span style="color: red;">*</span></label>
-                    <input type="number" class="form-control" name="quantity" min="0" value=0 >
-                    <span id="error" class="text-danger"></span>
-                </div>
-    
-            </div>
-        
-            <div class="col-md-12 mt-3">
-                <div class="form-group">
-                    <label for="product_image">Product Image <span style="color: red;">*</span></label>
-                    <input type="file" class="form-control" name="image">
-                    <span id="image_error" class="text-danger"></span>
-                </div>
-            </div>
+                                <th>Id</th>
+                                <th>Tên</th>
+                                <th>Giá</th>
+                                <th>Sô lượng</th>
+                                <th>Description</th>
+                                <th>
+                                    Image
+                                </th>
+                                <th>Giá</th>
 
-    
-            <!-- Long/breif Description -->
-            <div class="col-md-12 mt-3">
-                <div class="form-group">
-                    <label for="long_description">Description</label>
-                    <textarea name="description" rows="5" class="form-control" ></textarea>
-                    <span id="long_description_error" class="text-danger"></span>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% list.forEach(data=>{%>
+                                <tr class="alert" role="alert" data-id="<%= data.id %>" data-target="#exampleModal">
+                                    <th>
+                                        <%=data._id%>
+                                    </th>
+                                    <td class="d-flex align-items-center">
+                                        <div class="img" style="background-image: url(images/person_1.jpg);"></div>
+                                        <div class="pl-3 ">
+                                            <span>
+                                                <%=data.name %>
+                                            </span>
+                                        </div>
+                                    </td>
+
+                                    
+                                    <td>
+                                        <div class="pl-3 ">
+                                            <span>
+                                                <%=data.price %>
+                                            </span>
+                                        </div>
+                                    </td>                      
+                                   
+
+                                   
+                                    <td>
+                                        <div class="pl-3 ">
+                                            <span>
+                                                <%=data.quantity %>
+                                            </span>
+                                        </div>
+                                    </td>
+                              
+
+                                   
+                                    <td>
+                                        <div class="pl-3 ">
+                                            <span>
+                                                <%=data.description %>
+                                            </span>
+                                        </div>
+                                    </td>
+                                    
+
+                                    <td>
+                                        <img style="width: 50px; height: 50px;" src="<%= data.image %>">
+                                    </td>
+
+
+
+                                    <td>
+                                        <button type="submit">
+                                            <span><a href="/product/delete/<%=data._id%>"
+                                                    onclick="return confirm_alert(this);"><i class="fa fa-trash"
+                                                        style="font-size: 20px; color: rgb(245, 65, 65);"></i></a></span>
+                                        </button>
+                                        <button type="submit">
+                                            <span><a href="/product/edit/<%=data._id%>">
+                                                    <i class="fa fa-pencil-square-o"
+                                                        style="font-size: 20px; color: rgb(65, 245, 92); margin-left: 10px;"></i>
+                                                </a>
+                                            </span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <%} ) %>
+
+
+
+
+
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
+    </div>
 
-
-    
-        <div class="col-md-12 text-center mt-4">
-          <button type="submit" class="btn btn-dark btn-block add-more-thumbnail">Add Product</button>
-      </div>
-    </form>
+</div>
 
     <h2 style="text-align: center;">Danh sách sản phẩm</h2>
     <table>
@@ -125,9 +171,9 @@
             <td>100,000 VND</td>
             <td>2000</td>
             <td>
-                <a href="product-detail.html?id=1">Xem</a>
-                <a href="#">Sửa</a>
-                <a href="#">Xóa</a>
+                <a href="/product/detailproduct">Xem</a>
+                <a href="/product/edit/<%=data._id%>">Sửa</a>
+                <a href="#" onclick="return confirm_alert(this);">Xóa</a>
             </td>
         </tr>
         <tr>
@@ -136,13 +182,19 @@
             <td>200,000 VND</td>
             <td>1560</td>
             <td>
-                <a href="product-detail.html?id=2">Xem</a>
-                <a href="#">Sửa</a>
-                <a href="#">Xóa</a>
+                <a href="product/detailproduct">Xem</a>
+                <a href="/product/edit/<%=data._id%>">Sửa</a>
+                <a href="#" onclick="return confirm_alert(this);">Xóa</a>
             </td>
         </tr>
         <!-- Thêm các dòng tương tự cho danh sách sản phẩm -->
     </table>
+    <script type="text/javascript">
+        function confirm_alert(node) {
+            return confirm("Bấm OK để xóa người dùng này.");
+        }
+
+    </script>
 </body>
 </html>
 <%- include('../inc/bottom'); %>
