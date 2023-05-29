@@ -5,17 +5,8 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var session = require('express-session') ;
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-// var apiRouter = require('./routes/api');
-var spRouter = require('./routes/product');
-var staffRouter = require('./routes/staff');
-var customerRouter = require('./routes/customer');
-var invoiceRouter = require('./routes/invoice');
-var statisticRouter = require('./routes/statistic');
-var homeRouter = require('./routes/home');
-// var tkRouter = require('./routes/taikhoan');
-var loginRouter = require('./routes/login');
+var accRouter = require('./routes/account');
+var proRouter = require('./routes/product');
 
 var apiRouter = require('./routes/api');
 
@@ -37,17 +28,8 @@ app.use(session({
   saveUninitialized:true
  }));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
-// app.use('/api', apiRouter );
-app.use('/',spRouter);
-app.use('/',staffRouter);
-app.use('/',customerRouter);
-app.use('/',invoiceRouter);
-app.use('/',statisticRouter);
-app.use('/',homeRouter);
-// app.use('/',tkRouter);
-app.use('/',loginRouter);
+app.use('/',accRouter);
+app.use('/', proRouter);
 
 app.use('/api', apiRouter);
 

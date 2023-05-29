@@ -1,0 +1,258 @@
+<%- include('../inc/top', { title: 'ACCOUNT LIST' }); %>
+<p class="text-center fs-3 fw-bolder fw-bold" style="margin-top: 20px;">Account List</p>
+
+
+        <div class="container-fluid mb-5" >
+
+            <div class="row height d-flex justify-content-center align-items-center">
+
+              <div class="col-md-5">
+
+                <form action="" method="post">
+                  <div class="form row gx-0 ">
+                    <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                      
+                      <select name="column" class="form-control" >
+                        <% if(column=="id"){%>
+                          <option value="id" selected> Id </option>
+                          <option value="name" > Full Name </option>
+                          <option value="email" > Email Address </option>
+                          <option value="phone" > Phone Number </option>
+                          <option value="role" > Role </option>
+                            <option value="address" > Address </option>
+                        <% } else if(column=="name"){%>
+                          <option value="id" > Id </option>
+                          <option value="name" selected> Full Name </option>
+                          <option value="email" > Email Address </option>
+                          <option value="phone" > Phone Number </option>
+                          <option value="role" > Role </option>
+                            <option value="address" > Address </option>
+                        <% }  else if(column=="email"){ %>
+                          <option value="id" > Id </option>
+                          <option value="name" > Full Name </option>
+                          <option value="email" selected> Email Address </option>
+                          <option value="phone" > Phone Number </option>
+                          <option value="role" > Role </option>
+                            <option value="address" > Address </option>
+                        <% }  else if(column=="phone"){ %>
+                          <option value="id" > Id </option>
+                          <option value="name" > Full Name </option>
+                          <option value="email" > Email Address </option>
+                          <option value="phone" selected> Phone Number </option>
+                          <option value="role" > Role </option>
+                            <option value="address" > Address </option>
+                        <% }  else if(column=="role"){ %>
+                            <option value="id" > Id </option>
+                            <option value="name" > Full Name </option>
+                            <option value="email"> Email Address </option>
+                            <option value="phone" > Phone Number </option>
+                            <option value="role" selected> Role </option>
+                            <option value="address" > Address </option>
+                        <% }  else if(column=="address"){ %>
+                            <option value="id" > Id </option>
+                            <option value="name" > Full Name </option>
+                            <option value="email"> Email Address </option>
+                            <option value="phone" > Phone Number </option>
+                            <option value="role" > Role </option>
+                            <option value="address" selected> Address </option>
+                        <% }  else { %>
+                          <option value="id" > Id </option>
+                          <option value="name" > Full Name </option>
+                          <option value="email" > Email Address </option>
+                          <option value="phone" > Phone Number </option>
+                          <option value="role" > Role </option>
+                            <option value="address" > Address </option>
+                        <% } %>
+                  
+                      
+                    </select>
+                    </div>
+                      
+                    <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                      <input type="text"  name="text" class="form-control " placeholder="Search..." value="<%= text %>">
+                    </div>
+                    
+                    <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                      <button type="submit" class="btn btn-base">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                      </button>
+                  </div>
+                    
+                  </div>
+                </form>
+                
+              </div>
+            </div>
+        </div>
+
+
+    
+
+        <div class="table"> 
+            <table class="table mx-auto" style="max-width: 95%;" id="myTable">
+                <thead>
+                  <tr class="header">
+                    <th scope="col">
+
+                      <% if( (msg1 == "id") && (msg == 1) ) {%>
+                        <a href="?_sort&column=id&type=-1" class="navbar-brand">ID
+                          <i class="fa-solid fa-arrow-up-short-wide" style="color: #000000;"></i>
+                            
+                        </a>
+                    <% } else if ( (msg1 == "id") && (msg == -1) ) {%>
+        
+                        <a href="?_sort&column=id&type=1" class="navbar-brand">ID
+                            
+                          <i class="fa-solid fa-arrow-down-short-wide" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } else {%>
+        
+                        <a href="?_sort&column=id&type=1" class="navbar-brand">ID
+                            <i class="fa-solid fa-filter" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } %>
+
+                    </th>
+                    <th scope="col">
+
+                      <% if( (msg1 == "name") && (msg == 1) ) {%>
+                        <a href="?_sort&column=name&type=-1" class="navbar-brand">Full Name
+                          <i class="fa-solid fa-arrow-up-short-wide" style="color: #000000;"></i>
+                        </a>
+                    <% } else if ( (msg1 == "name") && (msg == -1) ) {%>
+        
+                        <a href="?_sort&column=name&type=1" class="navbar-brand">Full Name
+                            
+                          <i class="fa-solid fa-arrow-down-short-wide" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } else {%>
+        
+                        <a href="?_sort&column=name&type=1" class="navbar-brand">Full Name
+                            <i class="fa-solid fa-filter" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } %>
+
+                    </th>
+                    <th scope="col">
+
+                      <% if( (msg1 == "email") && (msg == 1) ) {%>
+                        <a href="?_sort&column=email&type=-1" class="navbar-brand">Email Address
+                          <i class="fa-solid fa-arrow-up-short-wide" style="color: #000000;"></i>
+                        </a>
+                    <% } else if ( (msg1 == "email") && (msg == -1) ) {%>
+        
+                        <a href="?_sort&column=email&type=1" class="navbar-brand">Email Address
+                            
+                          <i class="fa-solid fa-arrow-down-short-wide" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } else {%>
+        
+                        <a href="?_sort&column=email&type=1" class="navbar-brand">Email Address
+                            <i class="fa-solid fa-filter" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } %>
+
+                    </th>
+                    <th scope="col">
+
+                      <% if( (msg1 == "phone") && (msg == 1) ) {%>
+                        <a href="?_sort&column=phone&type=-1" class="navbar-brand">Phone Number
+                          <i class="fa-solid fa-arrow-up-short-wide" style="color: #000000;"></i>
+                        </a>
+                    <% } else if ( (msg1 == "phone") && (msg == -1) ) {%>
+        
+                        <a href="?_sort&column=phone&type=1" class="navbar-brand">Phone Number
+                            
+                          <i class="fa-solid fa-arrow-down-short-wide" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } else {%>
+        
+                        <a href="?_sort&column=phone&type=1" class="navbar-brand">Phone Number
+                            <i class="fa-solid fa-filter" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } %>
+
+                    </th>
+                    <th scope="col">
+
+                      <% if( (msg1 == "role") && (msg == 1) ) {%>
+                        <a href="?_sort&column=role&type=-1" class="navbar-brand">Role
+                          <i class="fa-solid fa-arrow-up-short-wide" style="color: #000000;"></i>
+                        </a>
+                    <% } else if ( (msg1 == "role") && (msg == -1) ) {%>
+        
+                        <a href="?_sort&column=role&type=1" class="navbar-brand">Role
+                            
+                          <i class="fa-solid fa-arrow-down-short-wide" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } else {%>
+        
+                        <a href="?_sort&column=role&type=1" class="navbar-brand">Role
+                            <i class="fa-solid fa-filter" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } %>
+
+                    </th>
+
+                    <th scope="col">
+
+                        <% if( (msg1 == "address") && (msg == 1) ) {%>
+                          <a href="?_sort&column=address&type=-1" class="navbar-brand">Address
+                            <i class="fa-solid fa-arrow-up-short-wide" style="color: #000000;"></i>
+                          </a>
+                      <% } else if ( (msg1 == "address") && (msg == -1) ) {%>
+          
+                          <a href="?_sort&column=address&type=1" class="navbar-brand">Address
+                              
+                            <i class="fa-solid fa-arrow-down-short-wide" style="color: #000000;"></i>
+                          </a>
+          
+                      <% } else {%>
+          
+                          <a href="?_sort&column=address&type=1" class="navbar-brand">Address
+                              <i class="fa-solid fa-filter" style="color: #000000;"></i>
+                          </a>
+          
+                      <% } %>
+  
+                      </th>
+                  </tr>
+                </thead>
+                <tbody>
+                    <% data.forEach(function(account){ %>
+                        <tr>
+                        <th>
+                          <a href="/account/<%= account._id %>" class="navbar-brand aa"><%= account._id %></a>
+                        </th>
+                        <td><%= account.name %></td>
+                        <td><%= account.email %></td>
+                        <td><%= account.phone %></td>
+                        <td><%= account.role %></td>
+                        <td><%= account.address %></td>
+                        <td>
+                            <div class="d-grid gap-2 col-6 mx-auto">
+                                <a class="btn border text-center aa" href="/edit-account/<%= account._id %>"><span><i class="fa-solid fa-pen" style="color: #000000;"></i></span> Edit</a>
+                              </div>
+                        </td>
+                        <td>
+                          <div class="d-grid gap-2 col-6 mx-auto">
+                              <a class="btn border text-center aa" href="/account/remove/<%= account._id %>"><span><i class="fa-regular fa-trash-can" style="color: #000000;"></i></span> Delete</a>
+                            </div>
+                      </td>
+                    </tr>
+                    <% }); %>
+                </tbody>
+              </table>
+
+
+<%- include('../inc/bottom'); %>
