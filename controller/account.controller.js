@@ -147,3 +147,92 @@ exports.getList = async (req,res,next)=>{
     
     res.render( 'account/list', {data: list , msg: msg, msg1:msg1, column:column, text:text} )
 }
+
+exports.addAccount = async (req,res,next)=>{
+   
+    let msg = ''; // chứa câu thông báo
+    var list = await db.userModel.find();
+    if(req.method =='POST'){
+        
+        // tạo đối tượng model 
+        let objAccount = new db.userModel();
+        objAccount.name = req.body.name;
+        objAccount.password = req.body.password;
+        objAccount.email = req.body.email;
+        objAccount.phone = req.body.phone;
+        objAccount.address = req.body.address;
+        objAccount.role = req.body.role;
+        
+        try{
+            let new_acc = await objAccount.save();
+            
+            console.log(new_acc);
+
+            console.log("Đã ghi thành công");
+            msg = 'Đã thêm thành công';
+        }catch(err){
+            console.log(err);
+            msg ='Lỗi '+ err.message;
+
+        }
+ 
+    }
+
+    res.render('account/add',{msg:msg,data:list});
+}
+exports.editAccount = async (req,res,next)=>{
+    let msg = ''; // chứa câu thông báo
+    // load dữ liệu cũ để hiển thị
+    let objAccount = await db.userModel.findById(  req.params.idacc  );
+    console.log( objAccount);
+
+    // lấy danh sách thể loại đưa lên form
+    let list = await db.userModel.find();
+
+    if(req.method =='POST'){
+        // xử lý ghi CSDL ở đây
+        // kiểm tra hợp lệ dữ liệu ở chỗ này.
+
+
+        // tạo đối tượng model 
+
+        let objAccount = new db.userModel();
+        objAccount.name = req.body.name;
+        objAccount.password = req.body.password;
+        objAccount.email = req.body.email;
+        objAccount.phone = req.body.phone;
+        objAccount.address = req.body.address;
+        objAccount.role = req.body.role;
+        objAccount._id = req.params.idacc;
+        try{
+             
+            // update dữ liệu
+            // await myModel.spModel.updateOne( {_id:  req.params.idsp},   objSP );
+             await db.userModel.findByIdAndUpdate({_id: req.params.idacc},objAccount);
+
+            console.log("Đã ghi thành công");
+            msg = 'Đã ghi thành công';
+        }catch(err){
+            console.log(err);
+            msg ='Lỗi '+ err.message;
+
+        }
+ 
+    }
+
+    res.render('account/edit', 
+            {msg:msg, objAccount: objAccount,data:list})
+
+}
+exports.deleteAccount = async (req,res,next)=>{
+
+    let deleteAccount = await db.userModel.deleteOne({_id: req.params.idacc}).exec();
+
+    if(deleteAccount){
+        console.log("xoa thanh cong");
+        res.redirect('/account');
+    }else{
+        console.log("xoá null");
+        res.redirect('/account');
+    }
+}

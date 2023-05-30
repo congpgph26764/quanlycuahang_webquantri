@@ -85,10 +85,14 @@
             </div>
         </div>
 
-
+        <div class="row height d-flex justify-content-center align-items-center">
+          <span>
+            <button><a href="/add"> Thêm tài khoản </a></button>
+          </span>
+        </div>
     
 
-        <div class="table"> 
+        <div class="table" style="margin-top: 30px;"> 
             <table class="table mx-auto" style="max-width: 95%;" id="myTable">
                 <thead>
                   <tr class="header">
@@ -241,18 +245,24 @@
                         <td><%= account.address %></td>
                         <td>
                             <div class="d-grid gap-2 col-6 mx-auto">
-                                <a class="btn border text-center aa" href="/edit-account/<%= account._id %>"><span><i class="fa-solid fa-pen" style="color: #000000;"></i></span> Edit</a>
+                                <a class="btn border text-center aa" href="/edit/<%= account._id %>"><span><i class="fa-solid fa-pen" style="color: #000000;"></i></span> Edit</a>
                               </div>
                         </td>
                         <td>
                           <div class="d-grid gap-2 col-6 mx-auto">
-                              <a class="btn border text-center aa" href="/account/remove/<%= account._id %>"><span><i class="fa-regular fa-trash-can" style="color: #000000;"></i></span> Delete</a>
+                              <a class="btn border text-center aa" href="/remove/<%= account._id %>" onclick="return confirm_alert(this);"><span><i class="fa-regular fa-trash-can" style="color: #000000;"></i></span> Delete</a>
                             </div>
                       </td>
                     </tr>
                     <% }); %>
                 </tbody>
               </table>
+              <script type="text/javascript">
+                function confirm_alert(node) {
+                    return confirm("Bấm OK để xóa người dùng này.");
+                }
+        
+            </script>
 
 
 <%- include('../inc/bottom'); %>
