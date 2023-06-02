@@ -7,6 +7,7 @@ var session = require('express-session') ;
 
 var accRouter = require('./routes/account');
 var proRouter = require('./routes/product');
+var catRouter = require('./routes/category');
 
 var apiRouter = require('./routes/api');
 
@@ -30,6 +31,7 @@ app.use(session({
 
 app.use('/',accRouter);
 app.use('/', proRouter);
+app.use('/', catRouter);
 
 app.use('/api', apiRouter);
 

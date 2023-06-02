@@ -1,0 +1,70 @@
+<%- include('../inc/top') %>
+    <div class="container">
+        <div class="row justify-content-center" style="margin-top: 10px;">
+            <div class="col-md-6 text-center mb-5">
+                <h2 class="heading-section"><b>Quản Lý Loại Sản Phẩm</b></h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="d-flex" style="margin-bottom: 5px;"><button type="button" class="btn btn-success "
+                        onclick="location.href='http://localhost:3000/addcat'">Thêm Thể Loại</button></div>
+                <div class="table-wrap">
+                    <table class="table table-responsive-xl">
+                        <thead class="thead-dark">
+                            <tr>
+                                <th><a class="text-light"
+                                        href="http://localhost:3000/category/sortcatname">Name</a></th>
+                                <th></th>
+                                <th>&nbsp;</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% list.forEach(data=>{%>
+                                <tr class="alert" role="alert">
+
+                                    <td>
+                                        <%=data.name %>
+                                    </td>
+
+                                    <td>
+
+                                        <button type="submit">
+                                            <div>
+
+                                                <span><a href="/category/update/<%=data._id%>"
+                                                        onclick="return mconfirm_alert(this);"><i
+                                                            class="fa fa-pencil"></i></a></span>
+                                            </div>
+                                        </button>
+
+                                        <button type="submit">
+
+                                            <span><a href="/category/delete/<%=data._id%>"
+                                                    onclick="return confirm_alert(this);"> <i
+                                                        class="fa fa-trash"></i></a></span>
+                                        </button>
+                                    </td>
+                                </tr>
+
+                                <%} ) %>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function confirm_alert(node) {
+            return confirm("Bạn có chắc chắn xóa không ?");
+        }
+    </script>
+    <script type="text/javascript">
+        function mconfirm_alert(node) {
+            return confirm("Bạn có chắc chắn sửa không ?");
+        }
+    </script>
+
+    <%- include('../inc/bottom') %>

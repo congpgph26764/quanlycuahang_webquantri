@@ -74,9 +74,6 @@ const feedbackSchema = new db.mongoose.Schema(
     }
 );
 
-
-
-
 let userModel = db.mongoose.model('userModel', userSchema );
 let proModel = db.mongoose.model('proModel', proSchema );
 let catModel = db.mongoose.model("catModel", catSchema);
