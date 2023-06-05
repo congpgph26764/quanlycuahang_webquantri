@@ -41,23 +41,17 @@ const catSchema = new db.mongoose.Schema(
 const billSchema = new db.mongoose.Schema(
     {
 
-       date: { type: String , required: true }, 
+       name: { type: String , required: true }, 
+       email: { type: String , required: false}, 
+       phone: { type: String , required: true }, 
+       address: { type: String , required: true }, 
+       date: { type: String , required: true },
+       products:  { type: Array, required: true },
+       total_price: { type: Number , required: true }, 
+       payment_methods: { type: String , required: true }, 
     },
     {
         collection: 'bill'
-    }
-);
-
-const detailed_billSchema = new db.mongoose.Schema(
-    {
-
-        quantity: { type: Number, required: true }, 
-        id_user: { type: db.mongoose.Schema.Types.ObjectId, ref: 'userModel'},
-        id_bill: { type: db.mongoose.Schema.Types.ObjectId, ref: 'billModel'},
-        id_product: { type: db.mongoose.Schema.Types.ObjectId, ref: 'proModel'}
-    },
-    {
-        collection: 'detailed_bill'
     }
 );
 
@@ -78,10 +72,9 @@ let userModel = db.mongoose.model('userModel', userSchema );
 let proModel = db.mongoose.model('proModel', proSchema );
 let catModel = db.mongoose.model("catModel", catSchema);
 let billModel = db.mongoose.model('billModel', billSchema );
-let detailed_billModel = db.mongoose.model('detailed_billModel', detailed_billSchema );
 let feedbackModel = db.mongoose.model('feedbackModel', feedbackSchema );
 
 
 module.exports = {
-    userModel, proModel, catModel, billModel, detailed_billModel, feedbackModel
+    userModel, proModel, catModel, billModel, feedbackModel
 }
