@@ -26,15 +26,22 @@ exports.addBill = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {date} = req.body;
+    let {date, name, email, phone, address, payment_methods, total_price, status} = req.body;
 
-    if (!date) {
+    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status) {
         return res.status(200).json({
             message: 'missing required params'
         })
     }
     let objBill = new md.billModel();
+        objBill.name = name;
+        objBill.email = email;
+        objBill.phone = phone;
+        objBill.address = address;
         objBill.date = date;
+        objBill.total_price = total_price;
+        objBill.payment_methods = payment_methods;
+        objBill.status = status;
 
     try {
         await objBill.save();
@@ -56,9 +63,9 @@ exports.updateBill  = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {date} = req.body;
+    let {date, name, email, phone, address, payment_methods, total_price, status} = req.body;
 
-    if (!date) {
+    if (!date || !name || !email || !phone || !address || !total_price || !payment_methods || !status) {
         return res.status(200).json({
             message: 'missing required params'
         })
