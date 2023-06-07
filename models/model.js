@@ -57,7 +57,6 @@ const billSchema = new db.mongoose.Schema(
 
 const detailed_billSchema = new db.mongoose.Schema(
     {
-       name: { type: String , required: true }, 
         id_product: { type: db.mongoose.Schema.Types.ObjectId, ref: 'proModel'},
         id_bill: { type: db.mongoose.Schema.Types.ObjectId, ref: 'billModel'},
         quantity: { type: Number , required: true }, 

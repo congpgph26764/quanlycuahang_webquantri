@@ -26,9 +26,9 @@ exports.addDetailed_billl = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {quantity, id_bill, id_product, id_user} = req.body;
+    let {quantity, id_bill, id_product} = req.body;
 
-    if (!quantity || !id_bill || !id_product || !id_user) {
+    if (!quantity || !id_bill || !id_product) {
         return res.status(200).json({
             message: 'missing required params'
         })
@@ -37,7 +37,6 @@ exports.addDetailed_billl = async  (req, res, next) =>{
         objDetailed_bill.quantity = quantity;
         objDetailed_bill.id_bill = id_bill;
         objDetailed_bill.id_product = id_product;
-        objDetailed_bill.id_user = id_user;
 
     try {
         await objDetailed_bill.save();
@@ -59,9 +58,9 @@ exports.updateDetailed_bill  = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {quantity, id_bill, id_product, id_user} = req.body;
+    let {quantity, id_bill, id_product} = req.body;
 
-    if (!quantity || !id_bill || !id_product || !id_user) {
+    if (!quantity || !id_bill || !id_product) {
         return res.status(200).json({
             message: 'missing required params'
         })
@@ -70,7 +69,6 @@ exports.updateDetailed_bill  = async  (req, res, next) =>{
         objDetailed_bill.quantity = quantity;
         objDetailed_bill.id_bill = id_bill;
         objDetailed_bill.id_product = id_product;
-        objDetailed_bill.id_user = id_user;
         objDetailed_bill._id = req.params.iddetailed_bill
 
     try {
