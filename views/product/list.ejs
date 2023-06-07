@@ -8,6 +8,7 @@
             </span>
         </div>
 
+
         <div class="table" style="margin-top: 30px;"> 
             <table class="table mx-auto" style="max-width: 95%;" id="myTable">
                 <thead>
@@ -18,31 +19,31 @@
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Description</th>
-                    <th>Image</th>
+                    
                     <th>Thể loại</th>
                   </tr>
                   
                 </thead>
                 <tbody>
-                    <% data.forEach(function(product){ %>
+                    <% data.forEach(function(objTL){ %>
                       <tr>
                         <th>
-                          <a href="/detail/<%= product._id %>" class="navbar-brand aa"><%= product._id %></a>
+                          <a href="/detail/<%= objTL._id %>" class="navbar-brand aa"><%= objTL._id %></a>
                         </th>
-                        <td><%= product.name %></td>
-                        <td><%= product.price %></td>
-                        <td><%= product.quantity %></td>
-                        <td><%= product.description %></td>
-                        <td><%= product.image %></td>
-                        <td><%= product.id_category %></td>
+                        <td><%= objTL.name %></td>
+                        <td><%= objTL.price %></td>
+                        <td><%= objTL.quantity %></td>
+                        <td><%= objTL.description %></td>
+                        
+                        <td><%= objTL.id_category.name %></td>
                         <td>
                             <div class="d-grid gap-2 col-6 mx-auto">
-                                <a class="btn border text-center aa" href="/edit-pro/<%= product._id %>"><span><i class="fa-solid fa-pen" style="color: #000000;"></i></span> Edit</a>
+                                <a class="btn border text-center aa" href="/edit-pro/<%= objTL._id %>"><span><i class="fa-solid fa-pen" style="color: #000000;"></i></span> Edit</a>
                               </div>
                         </td>
                         <td>
                           <div class="d-grid gap-2 col-6 mx-auto">
-                              <a class="btn border text-center aa" href="/remove-pro/<%= product._id %>" onclick="return confirm_alert(this);"><span><i class="fa-regular fa-trash-can" style="color: #000000;"></i></span> Delete</a>
+                              <a class="btn border text-center aa" href="/remove-pro/<%= objTL._id %>" onclick="return confirm_alert(this);"><span><i class="fa-regular fa-trash-can" style="color: #000000;"></i></span> Delete</a>
                             </div>
                         </td>
                       </tr>

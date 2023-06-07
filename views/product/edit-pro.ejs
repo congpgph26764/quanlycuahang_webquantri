@@ -27,7 +27,7 @@
     }
 
     .form-group input[type="number"] {
-      width: 80px;
+      width: 250px;
     }
 
     .form-group input[type="submit"] {
@@ -58,15 +58,15 @@
       </div>
       <div class="form-group">
         <label for="description">Mô tả:</label>
-        <textarea id="description" name="description" rows="4" required value="<%= objSP.description %>"></textarea>
+        <input type="text" id="description" name="description" required value="<%= objSP.description %>">
       </div>
-      <div class="form-group">
+      <!-- <div class="form-group">
         <label for="image">Image:</label>
         <input type="file" id="image" name="image" required value="<%= objSP.image %>">
-      </div>
+      </div> -->
       <div class="form-group">
         <label for="category">Thể loại:</label>
-        <select name="category" >
+        <select name="id_category" >
             <% data.forEach( (objTL)=>{ 
                 let selected = '';// xác định thể loại đã chọn của sp
                 if(String( objTL._id ) == String(objSP.id_category) ){

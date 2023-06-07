@@ -5,9 +5,7 @@ exports.getHome = async (req,res,next)=>{
     res.render('index');
 }
 exports.getList = async (req,res,next)=>{
-    // hiển thị danh sách sản phẩm
 
-    // chức năng lọc: 
     // kiểm tra tồn tại tham số
     let dieu_kien = null;
 
@@ -24,13 +22,13 @@ exports.getList = async (req,res,next)=>{
                     ;// tìm sp
     console.log(list);
     //hien thi danh sach sanpham
-    res.render('product/list', { data: list });
+    res.render('product/list', { data: list});
 }
 
 exports.addProduct = async (req,res,next)=>{
    
     let msg = ''; // chứa câu thông báo
-    let list = await db.proModel.find();
+    let list = await db.catModel.find();
 
     if(req.method =='POST'){
         
@@ -40,7 +38,7 @@ exports.addProduct = async (req,res,next)=>{
         objSP.price = req.body.price;
         objSP.quantity = req.body.quantity;
         objSP.description = req.body.description;
-        objSP.id_category = req.body.category;
+        objSP.id_category = req.body.id_category;
         try{
             let new_pro = await objSP.save();
             
@@ -48,6 +46,7 @@ exports.addProduct = async (req,res,next)=>{
 
             console.log("Đã ghi thành công");
             msg = 'Đã thêm thành công';
+            res.redirect('/product');
         }catch(err){
             console.log(err);
             msg ='Lỗi '+ err.message;
@@ -65,7 +64,7 @@ exports.editProduct = async (req,res,next)=>{
     console.log( objSP);
 
     // lấy danh sách thể loại đưa lên form
-    let list = await db.proModel.find();
+    let list = await db.catModel.find();
 
     if(req.method =='POST'){
         // xử lý ghi CSDL ở đây
@@ -79,7 +78,7 @@ exports.editProduct = async (req,res,next)=>{
         objSP.price = req.body.price;
         objSP.quantity = req.body.quantity;
         objSP.description = req.body.description;
-        objSP.id_category = req.body.category;
+        objSP.id_category = req.body.id_category;
         objSP._id = req.params.idpro;
         try{
              
