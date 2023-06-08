@@ -40,7 +40,7 @@ const catSchema = new db.mongoose.Schema(
 
 const billSchema = new db.mongoose.Schema(
     {
-
+       idBill: { type: Number , required: true },
        name: { type: String , required: true }, 
        email: { type: String , required: true}, 
        phone: { type: String , required: true }, 
@@ -48,7 +48,8 @@ const billSchema = new db.mongoose.Schema(
        date: { type: String , required: true },
        total_price: { type: Number , required: true }, 
        payment_methods: { type: String , required: true }, 
-       status: { type: String , required: true }, 
+       note: { type: String , required: false }, 
+       status: { type: String , required: true },
     },
     {
         collection: 'bill'
@@ -57,8 +58,9 @@ const billSchema = new db.mongoose.Schema(
 
 const detailed_billSchema = new db.mongoose.Schema(
     {
-        id_product: { type: db.mongoose.Schema.Types.ObjectId, ref: 'proModel'},
-        id_bill: { type: db.mongoose.Schema.Types.ObjectId, ref: 'billModel'},
+        name: { type: String , required: true },
+        price: { type: Number , required: true },
+        id_bill: { type: Number , required: true },
         quantity: { type: Number , required: true }, 
     },
     {
