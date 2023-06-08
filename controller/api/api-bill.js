@@ -1,16 +1,13 @@
 const md = require('../../models/model');
 
 exports.listBill = async  (req, res, next) =>{
-    let dataReturn = {
-        status: 1,
-        msg: 'ok'
-    }
+
     // code su ly lay danh sach o day'
     let list = [];
 
     try {
         list = await md.billModel.find();
-        dataReturn.data = list
+        dataReturn = list
     } catch (error) {
         dataReturn.msg = error.message
     }
@@ -26,14 +23,15 @@ exports.addBill = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {date, name, email, phone, address, payment_methods, total_price, status} = req.body;
+    let {date, name, email, phone, address, payment_methods, total_price, status, idBill, note} = req.body;
 
-    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status) {
+    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status || !idBill) {
         return res.status(200).json({
             message: 'missing required params'
         })
     }
     let objBill = new md.billModel();
+        objBill.idBill = idBill;
         objBill.name = name;
         objBill.email = email;
         objBill.phone = phone;
@@ -41,6 +39,7 @@ exports.addBill = async  (req, res, next) =>{
         objBill.date = date;
         objBill.total_price = total_price;
         objBill.payment_methods = payment_methods;
+        objBill.note = note;
         objBill.status = status;
 
     try {
@@ -63,15 +62,24 @@ exports.updateBill  = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {date, name, email, phone, address, payment_methods, total_price, status} = req.body;
+    let {date, name, email, phone, address, payment_methods, total_price, status, idBill, note} = req.body;
 
-    if (!date || !name || !email || !phone || !address || !total_price || !payment_methods || !status) {
+    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status || !idBill) {
         return res.status(200).json({
             message: 'missing required params'
         })
     }
     let objBill = new md.billModel();
+        objBill.idBill = idBill;
+        objBill.name = name;
+        objBill.email = email;
+        objBill.phone = phone;
+        objBill.address = address;
         objBill.date = date;
+        objBill.total_price = total_price;
+        objBill.payment_methods = payment_methods;
+        objBill.note = note;
+        objBill.status = status;
         objBill._id = req.params.idbill
 
     try {
