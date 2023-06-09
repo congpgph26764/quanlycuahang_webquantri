@@ -8,6 +8,7 @@ var session = require('express-session') ;
 var accRouter = require('./routes/account');
 var proRouter = require('./routes/product');
 var catRouter = require('./routes/category');
+var feddRouter = require('./routes/feedback');
 
 var apiRouter = require('./routes/api');
 
@@ -22,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.use(session({
   secret:'nhvhi3432j492j35nfdshfúydfy2h3nksjdfh9',
@@ -32,6 +34,7 @@ app.use(session({
 app.use('/',accRouter);
 app.use('/', proRouter);
 app.use('/', catRouter);
+app.use('/', feddRouter);
 
 app.use('/api', apiRouter);
 
