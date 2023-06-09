@@ -9,15 +9,15 @@
                 <div class="card-body">
                     <form action="" method="POST">
                         
-                        <div class="form-row">
-                            <div class="name">Name</div>
-                            <div class="value">
-                                <div class="row row-refine">
-                                <div class="input-group col-7">
-                                    <input class="input--style-5" type="text" name="name" value="<%= objCat.name %>">
+                        <div class="form-row" style="margin-left: 5px;">
+                            <div class="input-group has-validation">
+                                <span class="input-group-text" id="validationTooltipUsernamePrepend">Name</span>
+                                <input type="text" name="name" value="<%= objCat.name %>" class="form-control" id="validationTooltipUsername"
+                                  aria-describedby="validationTooltipUsernamePrepend" required>
+                                <div class="invalid-tooltip">
+                                  Please choose a unique and valid name.
                                 </div>
-                                </div>
-                            </div>
+                              </div>
                         </div>
 
                         

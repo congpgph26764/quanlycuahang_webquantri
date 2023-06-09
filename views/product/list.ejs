@@ -2,7 +2,88 @@
     
     <p class="text-center fs-3 fw-bolder fw-bold" style="margin-top: 20px;">List Product</p>
 
-    
+    <div class="container-fluid mb-5" >
+
+      <div class="row height d-flex justify-content-center align-items-center">
+
+        <div class="col-md-5">
+
+          <form action="" method="post">
+            <div class="form row gx-0 ">
+              <div class="col-lg-3 col-md-3 col-sm-12 p-0">
+                
+                <select name="column" class="form-control" >
+                  <% if(column=="id"){%>
+                    <option value="id" selected> Id </option>
+                    <option value="name" > Name </option>
+                    <option value="price" > Price </option>
+                    <option value="quantity" > Quantity</option>
+                    <option value="description" > Description </option>
+                    <option value="id_category" > Category </option>
+                  <% } else if(column=="name"){%>
+                    <option value="id" > Id </option>
+                    <option value="name" selected > Name </option>
+                    <option value="price" > Price </option>
+                    <option value="quantity" > Quantity</option>
+                    <option value="description" > Description </option>
+                    <option value="id_category" > Category </option>
+                  <% }  else if(column=="price"){ %>
+                    <option value="id"> Id </option>
+                    <option value="name" > Name </option>
+                    <option value="price" selected> Price </option>
+                    <option value="quantity" > Quantity</option>
+                    <option value="description" > Description </option>
+                    <option value="id_category" > Category </option>
+                  <% }  else if(column=="quantity"){ %>
+                    <option value="id"> Id </option>
+                    <option value="name" > Name </option>
+                    <option value="price" > Price </option>
+                    <option value="quantity" selected> Quantity</option>
+                    <option value="description" > Description </option>
+                    <option value="id_category" > Category </option>
+                  <% }  else if(column=="description"){ %>
+                    <option value="id"> Id </option>
+                    <option value="name" > Name </option>
+                    <option value="price" > Price </option>
+                    <option value="quantity" > Quantity</option>
+                    <option value="description" selected > Description </option>
+                    <option value="id_category" > Category </option>
+                  <% }  else if(column=="id_category"){ %>
+                    <option value="id"> Id </option>
+                    <option value="name" > Name </option>
+                    <option value="price" > Price </option>
+                    <option value="quantity" > Quantity</option>
+                    <option value="description" > Description </option>
+                    <option value="id_category" selected> Category </option>
+                  <% }  else { %>
+                    <option value="id"> Id </option>
+                    <option value="name" > Name </option>
+                    <option value="price" > Price </option>
+                    <option value="quantity" > Quantity</option>
+                    <option value="description" > Description </option>
+                    <option value="id_category" > Category </option>
+                  <% } %>
+            
+                
+              </select>
+              </div>
+                
+              <div class="col-lg-8 col-md-6 col-sm-12 p-0">
+                <input type="text"  name="text" class="form-control " placeholder="Search..." value="<%= text %>">
+              </div>
+              
+              <div class="col-lg-1 col-md-3 col-sm-12 p-0">
+                <button type="submit" class="btn btn-base">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                </button>
+            </div>
+              
+            </div>
+          </form>
+          
+        </div>
+      </div>
+  </div>
 
         <div class="row height d-flex justify-content-center align-items-center">
             <span>
@@ -12,52 +93,170 @@
 
 
         <div class="table" style="margin-top: 30px;"> 
-            <table class="table mx-auto" style="max-width: 95%;" id="myTable">
-                <thead>
-                 
-                  <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Description</th>
-                    
-                    <th>Thể loại</th>
-                    <th></th>
-                    <th></th>
-                  </tr>
-                  
-                </thead>
-                <tbody>
-                    <% data.forEach(function(objTL){ %>
-                      <tr>
-                        <th>
-                          <a href="/detail/<%= objTL._id %>" class="navbar-brand aa"><%= objTL._id %></a>
-                        </th>
-                        <td><%= objTL.name %></td>
-                        <td><%= objTL.price %></td>
-                        <td><%= objTL.quantity %></td>
-                        <td><%= objTL.description %></td>
-                        
-                        <td><%= objTL.id_category.name %></td>
-                        <td>
-                            <!-- <div class="d-grid gap-2 col-6 mx-auto"> -->
-                                <a class="btn border text-center aa" href="/edit-pro/<%= objTL._id %>"><span><i class="fa fa-pencil-square-o" style="color: #000000;"></i></span></a>
-                              </div>
-                        </td>
-                        <td>
-                          <!-- <div class="d-grid gap-2 col-6 mx-auto"> -->
-                              <a class="btn border text-center aa" href="/remove-pro/<%= objTL._id %>" onclick="return confirm_alert(this);"><span><i class="fa fa-minus-square" style="color: #000000;"></i></span></a>
-                            <!-- </div> -->
-                        </td>
-                      </tr>
-                    <% }); %>
-                </tbody>
-              </table>
-              <script type="text/javascript">
-                function confirm_alert(node) {
-                    return confirm("Bấm OK để xóa người dùng này.");
-                }
+          <table class="table mx-auto" style="max-width: 95%;" id="myTable">
+              <thead>
+                <tr class="header">
+                  <th scope="col">
+
+                    <% if( (msg1 == "id") && (msg == 1) ) {%>
+                      <a href="?_sort&column=id&type=-1" class="navbar-brand">ID
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                          
+                      </a>
+                  <% } else if ( (msg1 == "id") && (msg == -1) ) {%>
+      
+                      <a href="?_sort&column=id&type=1" class="navbar-brand">ID
+                          
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } else {%>
+      
+                      <a href="?_sort&column=id&type=1" class="navbar-brand">ID
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } %>
+
+                  </th>
+                  <th scope="col">
+
+                    <% if( (msg1 == "name") && (msg == 1) ) {%>
+                      <a href="?_sort&column=name&type=-1" class="navbar-brand">Name
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+                  <% } else if ( (msg1 == "name") && (msg == -1) ) {%>
+      
+                      <a href="?_sort&column=name&type=1" class="navbar-brand">Name
+                          
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } else {%>
+      
+                      <a href="?_sort&column=name&type=1" class="navbar-brand">Name
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } %>
+
+                  </th>
+                  <th scope="col">
+
+                    <% if( (msg1 == "price") && (msg == 1) ) {%>
+                      <a href="?_sort&column=price&type=-1" class="navbar-brand">Price
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+                  <% } else if ( (msg1 == "price") && (msg == -1) ) {%>
+      
+                    <a href="?_sort&column=price&type=-1" class="navbar-brand">Price
+                      <i class="fa fa-sort" style="color: #000000;"></i>
+                    </a>
+      
+                  <% } else {%>
+      
+                      <a href="?_sort&column=price&type=1" class="navbar-brand">Price
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } %>
+
+                  </th>
+                  <th scope="col">
+
+                    <% if( (msg1 == "quantity") && (msg == 1) ) {%>
+                      <a href="?_sort&column=quantity&type=-1" class="navbar-brand">Quantity
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+                  <% } else if ( (msg1 == "quantity") && (msg == -1) ) {%>
+      
+                      <a href="?_sort&column=quantity&type=1" class="navbar-brand">Quantity
+                          
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } else {%>
+      
+                      <a href="?_sort&column=quantity&type=1" class="navbar-brand">Quantity
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } %>
+
+                  </th>
+                  <th scope="col">
+
+                    <% if( (msg1 == "description") && (msg == 1) ) {%>
+                      <a href="?_sort&column=description&type=-1" class="navbar-brand">Description
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+                  <% } else if ( (msg1 == "description") && (msg == -1) ) {%>
+      
+                      <a href="?_sort&column=description&type=1" class="navbar-brand">Description
+                          
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } else {%>
+      
+                      <a href="?_sort&column=description&type=1" class="navbar-brand">Description
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } %>
+
+                  </th>
+
+                  <th scope="col">
+
+                      <% if( (msg1 == "id_category.name") && (msg == 1) ) {%>
+                        <a href="?_sort&column=id_category.name&type=-1" class="navbar-brand">Category
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                        </a>
+                    <% } else if ( (msg1 == "id_category.name") && (msg == -1) ) {%>
         
-            </script>
+                        <a href="?_sort&column=id_category.name&type=1" class="navbar-brand">Category
+                            
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } else {%>
+        
+                        <a href="?_sort&column=id_category.name&type=1" class="navbar-brand">Category
+                            <i class="fa fa-sort" style="color: #000000;"></i>
+                        </a>
+        
+                    <% } %>
+
+                    </th>
+                </tr>
+              </thead>
+              <tbody>
+                <% data.forEach(function(objTL){ %>
+                    <tr>
+                      <th>
+                        <a href="/detail/<%= objTL._id %>" class="navbar-brand aa"><%= objTL._id %></a>
+                      </th>
+                      <td><%= objTL.name %></td>
+                      <td><%= objTL.price %></td>
+                      <td><%= objTL.quantity %></td>
+                      <td><%= objTL.description %></td>
+                      
+                      <td><%= objTL.id_category.name %></td>
+                      <td>
+                          <!-- <div class="d-grid gap-2 col-6 mx-auto"> -->
+                              <a class="btn border text-center aa" href="/edit-pro/<%= objTL._id %>"><span><i class="fa fa-pencil-square-o" style="color: #000000;"></i></span></a>
+                            </div>
+                      </td>
+                </tr>
+                <% }); %>
+            </tbody>
+          </table>
+          <!-- <script type="text/javascript">
+            function confirm_alert(node) {
+                return confirm("Bấm OK để xóa người dùng này.");
+            }
+    
+        </script> -->
+
 <%- include('../inc/bottom'); %>

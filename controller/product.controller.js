@@ -6,23 +6,79 @@ exports.getHome = async (req,res,next)=>{
 }
 exports.getList = async (req,res,next)=>{
 
-    // kiểm tra tồn tại tham số
     let dieu_kien = null;
 
-    if(typeof( req.query.price) != 'undefined' )
-    {
-        let price = req.query.price; 
-        dieu_kien = { price: price };
-    }
+    let msg = req.query.type;
+    let msg1 = req.query.column;
 
-    // var list = await myModel.spModel.find(  dieu_kien   ).sort( { name: 1 });// tìm sp
-    // cải tiến lệnh lấy ds: lấy thêm thể loại
-    var list = await db.proModel.find(  dieu_kien   )
-                    .populate('id_category') // tên cột tham chiếu
-                    ;// tìm sp
-    console.log(list);
-    //hien thi danh sach sanpham
-    res.render('product/list', { data: list});
+    let text = "";
+    let column = "";
+    
+    if(req.method =='POST'){
+
+        column = req.body.column;
+        text = req.body.text;
+        
+        dieu_kien = { [column]: text };
+
+        console.log(dieu_kien);
+        
+    }
+    var list = await db.proModel.find(dieu_kien).populate('id_category');
+                    if (req.query.hasOwnProperty('_sort')) {
+
+                        list = list.sort((a, b) => {
+                
+                            let A = '';
+                            let B = '';
+                
+                            if (req.query.column== "id") {
+                                A = a.id.toLowerCase();
+                                B = b.id.toLowerCase();
+                            }
+                            if (req.query.column== "name") {
+                                A = a.name.toLowerCase();
+                                B = b.name.toLowerCase();
+                            }
+                            if (req.query.column== "price") {
+                                A = a.price.toString();
+                                B = b.price.toString();
+                            }
+                            if (req.query.column== "quantity") {
+                                A = a.quantity.toString();
+                                B = b.quantity.toString();
+                            }
+                            if (req.query.column== "description") {
+                                A = a.description.toLowerCase();
+                                B = b.description.toLowerCase();
+                            }
+                            if (req.query.column== "id_category") {
+                                A = a.id_category.toLowerCase();
+                                B = b.id_category.toLowerCase();
+                            }
+                
+                            if (req.query.type == "1") {
+                                if (A < B) {
+                                    return -1;
+                                }
+                                if (A > B) {
+                                    return 1;
+                                }
+                            } 
+                            else if (req.query.type == "-1"){
+                                if (A < B) {
+                                    return 1;
+                                }
+                                if (A > B) {
+                                    return -1;
+                                }
+                            }
+                
+                        
+                            return 0;
+                        })
+                    }
+    res.render('product/list', { data: list, msg: msg, msg1:msg1, column:column, text:text});
 }
 
 exports.addProduct = async (req,res,next)=>{
