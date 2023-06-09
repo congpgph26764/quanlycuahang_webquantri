@@ -19,6 +19,7 @@
                     <option value="price" > Price </option>
                     <option value="quantity" > Quantity</option>
                     <option value="description" > Description </option>
+                    <option value="image" > Image </option>
                     <option value="id_category.name" > Category </option>
                   <% } else if(column=="name"){%>
                     <option value="id" > Id </option>
@@ -26,6 +27,7 @@
                     <option value="price" > Price </option>
                     <option value="quantity" > Quantity</option>
                     <option value="description" > Description </option>
+                    <option value="image" > Image </option>
                     <option value="id_category.name" > Category </option>
                   <% }  else if(column=="price"){ %>
                     <option value="id"> Id </option>
@@ -40,6 +42,7 @@
                     <option value="price" > Price </option>
                     <option value="quantity" selected> Quantity</option>
                     <option value="description" > Description </option>
+                    <option value="image" > Image </option>
                     <option value="id_category.name" > Category </option>
                   <% }  else if(column=="description"){ %>
                     <option value="id"> Id </option>
@@ -47,6 +50,7 @@
                     <option value="price" > Price </option>
                     <option value="quantity" > Quantity</option>
                     <option value="description" selected > Description </option>
+                    <option value="image" > Image </option>
                     <option value="id_category.name" > Category </option>
                   <% }  else if(column=="id_category.name"){ %>
                     <option value="id"> Id </option>
@@ -54,6 +58,7 @@
                     <option value="price" > Price </option>
                     <option value="quantity" > Quantity</option>
                     <option value="description" > Description </option>
+                    <option value="image" > Image </option>
                     <option value="id_category.name" selected> Category </option>
                   <% }  else { %>
                     <option value="id"> Id </option>
@@ -61,6 +66,7 @@
                     <option value="price" > Price </option>
                     <option value="quantity" > Quantity</option>
                     <option value="description" > Description </option>
+                    <option value="image" > Image </option>
                     <option value="id_category.name" > Category </option>
                   <% } %>
             
@@ -209,6 +215,29 @@
 
                   <th scope="col">
 
+                    <% if( (msg1 == "image") && (msg == 1) ) {%>
+                      <a href="?_sort&column=image&type=-1" class="navbar-brand">Image
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+                  <% } else if ( (msg1 == "image") && (msg == -1) ) {%>
+      
+                      <a href="?_sort&column=image&type=1" class="navbar-brand">Image
+                          
+                        <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } else {%>
+      
+                      <a href="?_sort&column=image&type=1" class="navbar-brand">Image
+                          <i class="fa fa-sort" style="color: #000000;"></i>
+                      </a>
+      
+                  <% } %>
+
+                  </th>
+
+                  <th scope="col">
+
                       <% if( (msg1 == "id_category.name") && (msg == 1) ) {%>
                         <a href="?_sort&column=id_category.name&type=-1" class="navbar-brand">Category
                           <i class="fa fa-sort" style="color: #000000;"></i>
@@ -241,7 +270,7 @@
                       <td><%= objTL.price %></td>
                       <td><%= objTL.quantity %></td>
                       <td><%= objTL.description %></td>
-                      
+                      <td><img style="width: 50px; height: 50px;" src="<%= objTL.image %>" alt="#"></td>
                       <td><%= objTL.id_category.name %></td>
                       <td>
                           <!-- <div class="d-grid gap-2 col-6 mx-auto"> -->

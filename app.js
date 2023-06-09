@@ -23,6 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static('public'));
 
 app.use(session({
   secret:'nhvhi3432j492j35nfdshfúydfy2h3nksjdfh9',
