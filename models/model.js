@@ -50,6 +50,7 @@ const billSchema = new db.mongoose.Schema(
        payment_methods: { type: String , required: true }, 
        note: { type: String , required: false }, 
        status: { type: String , required: true },
+       id_user: { type: db.mongoose.Schema.Types.ObjectId, ref: 'userModel'}
     },
     {
         collection: 'bill'

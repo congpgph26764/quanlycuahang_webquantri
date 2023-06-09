@@ -23,9 +23,9 @@ exports.addBill = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {date, name, email, phone, address, payment_methods, total_price, status, idBill, note} = req.body;
+    let {date, name, email, phone, address, payment_methods, total_price, status, idBill, note, id_user} = req.body;
 
-    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status || !idBill) {
+    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status || !idBill || !id_user) {
         return res.status(200).json({
             message: 'missing required params'
         })
@@ -41,6 +41,7 @@ exports.addBill = async  (req, res, next) =>{
         objBill.payment_methods = payment_methods;
         objBill.note = note;
         objBill.status = status;
+        objBill.id_user = id_user;
 
     try {
         await objBill.save();
@@ -62,9 +63,9 @@ exports.updateBill  = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {date, name, email, phone, address, payment_methods, total_price, status, idBill, note} = req.body;
+    let {date, name, email, phone, address, payment_methods, total_price, status, idBill, note, id_user} = req.body;
 
-    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status || !idBill) {
+    if (!name || !email || !phone || !address || !date || !total_price || !payment_methods || !status || !idBill || !id_user) {
         return res.status(200).json({
             message: 'missing required params'
         })
@@ -80,7 +81,9 @@ exports.updateBill  = async  (req, res, next) =>{
         objBill.payment_methods = payment_methods;
         objBill.note = note;
         objBill.status = status;
+        objBill.id_user = id_user;
         objBill._id = req.params.idbill
+        
 
     try {
         await md.billModel.updateOne({ _id: req.params.idbill }, objBill)
