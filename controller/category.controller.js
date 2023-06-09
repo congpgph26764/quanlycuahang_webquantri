@@ -35,13 +35,6 @@ exports.addCat = async(req,res,next)=>{
     res.render( 'category/addcategory',{TieuDe:"Add Category"},)
 }
 exports.listcat = async(req,res,next)=>{
-//Hiển thị danh sach san pham
-
-//kiểm tra tồn tại tham s
-
-
-//var list=await myModel.spModel.find(dieu_kien).sort({name:1});
-//cair tieens lay them the loai
 var list=await db.catModel.find();
 console.log(list);
 

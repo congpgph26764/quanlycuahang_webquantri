@@ -70,11 +70,11 @@ const detailed_billSchema = new db.mongoose.Schema(
 
 const feedbackSchema = new db.mongoose.Schema(
     {
-        fullname: { type: String , required: true },
+        name: { type: String , required: true },
         phone: { type: String , required: true },
         email: { type: String , required: true },
         comment: { type: String , required: true }, 
-        image: { type: String , required: false },
+        question: { type: String , required: true },
     },
     {
         collection: 'feedback'
