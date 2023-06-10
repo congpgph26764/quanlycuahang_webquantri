@@ -17,6 +17,8 @@ router.post('/reg', check_login.khong_yc_dang_nhap, accountcontroller.Reg);
 router.get('/account', check_login.yeu_cau_dang_nhap, accountcontroller.getList);
 router.post('/account', check_login.yeu_cau_dang_nhap, accountcontroller.getList);
 
+router.get('/logout', check_login.yeu_cau_dang_nhap, accountcontroller.Logout);
+
 router.get('/add', check_login.yeu_cau_dang_nhap, accountcontroller.addAccount);
 router.post('/add', check_login.yeu_cau_dang_nhap, accountcontroller.addAccount);
 

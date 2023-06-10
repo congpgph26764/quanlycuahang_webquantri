@@ -28,6 +28,14 @@ exports.Reg = async (req, res, next) =>{
     res.render('login/reg', {msg: msg});
 }
 
+exports.Logout = (req, res, next)=>{
+    if(req.session != null )
+     req.session.destroy(  function(){
+        console.log("Đăng xuất thành công")
+        res.redirect('/');
+    });
+}
+
 exports.Login = async (req, res, next) =>{
     let msg = '';
     if(req.method == 'POST'){
