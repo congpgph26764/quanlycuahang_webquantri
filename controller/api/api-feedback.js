@@ -25,16 +25,16 @@ exports.addFeedback = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {fullname, phone, email, comment, image} = req.body;
+    let {name, phone, email, comment, image} = req.body;
 
-    if (!fullname || !phone || !email || !comment || !image) {
+    if (!name || !phone || !email || !comment || !image) {
         return res.status(200).json({
             message: 'missing required params'
         })
     }
     let objFeedback = new md.feedbackModel();
         
-        objFeedback.fullname = fullname;
+        objFeedback.name = name;
         objFeedback.phone = phone;
         objFeedback.email = email;
         objFeedback.comment = comment;
@@ -60,16 +60,16 @@ exports.updateFeedback  = async  (req, res, next) =>{
         status: 1,
         msg: 'ok'
     }
-    let {fullname, phone, email, comment, image} = req.body;
+    let {name, phone, email, comment, image} = req.body;
 
-    if (!fullname || !phone || !email || !comment || !image) {
+    if (!name || !phone || !email || !comment || !image) {
         return res.status(200).json({
             message: 'missing required params'
         })
     }
     let objFeedback = new md.feedbackModel();
         objFeedback._id = req.params.idfeedback
-        objFeedback.fullname = fullname;
+        objFeedback.name = name;
         objFeedback.phone = phone;
         objFeedback.email = email;
         objFeedback.comment = comment;
