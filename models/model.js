@@ -15,13 +15,15 @@ const userSchema = new db.mongoose.Schema(
 );
 
 const proSchema = new db.mongoose.Schema(
-    {
-
+    {        
         name: { type: String , required: true }, 
         price: { type: Number, required: true},
         quantity: { type: Number, required: true},
         description: { type: String, required: true},
         image: { type: String, required: false},
+        image1: { type: String, required: false},
+        image2: { type: String, required: false},
+        status: { type: String, required: false},
         id_category: { type: db.mongoose.Schema.Types.ObjectId, ref: 'catModel'}
     },
     {
@@ -31,7 +33,8 @@ const proSchema = new db.mongoose.Schema(
 
 const catSchema = new db.mongoose.Schema(
     {
-        name: {type: String, required :true}
+        name: {type: String, required :true},
+        image: {type: String, required :true}
     },
     {
         collection: "categories"
