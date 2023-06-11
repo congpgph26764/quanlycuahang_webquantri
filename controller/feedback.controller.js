@@ -6,20 +6,33 @@ exports.getHome = async (req,res,next)=>{
     res.render('index');
 }
 
+exports.listFeed = async(req,res,next)=>{
+    var list = await db.feedbackModel.find();
+    console.log(list);
+    
+    res.render('feedback/feedback',{list:list})
+    }
+    
 exports.addFeed = async(req,res,next)=>{
     let msg = ''; // ghi câu thông báo
+    var url_img = '';
+
+    let listFeed = await db.feedbackModel.find();
 
     if(req.method =='POST'){
+        await fs.promises.rename(req.file.path,'./public/uploads/'+req.file.originalname)
+        url_img='/uploads/'+req.file.originalname;
+        console.log("upload thành công"+url_img);
+
         let objFeedback = new db.feedbackModel();
         objFeedback.name = req.body.name;
         objFeedback.phone = req.body.phone;
         objFeedback.email = req.body.email;
         objFeedback.comment = req.body.comment;
-        objFeedback.question = req.body.question;
+        objFeedback.img = url_img;
         
         try{
             let new_feed = await objFeedback.save();
-            
             console.log(new_feed);
 
             console.log("Đã ghi thành công");
@@ -31,13 +44,7 @@ exports.addFeed = async(req,res,next)=>{
         }
  
     }
-    res.render( 'feedback/addfeedback',{TieuDe:"Add Feedback"},)
-}
-exports.listFeed = async(req,res,next)=>{
-var list=await db.feedbackModel.find();
-console.log(list);
-
-res.render('feedback/feedback',{list:list})
+    res.render( 'feedback/addfeedback',{ listFeed:listFeed});
 }
 
 exports.deleteFeed = async (req,res,next)=>{
