@@ -244,3 +244,22 @@ exports.deleteAccount = async (req,res,next)=>{
         res.redirect('/account');
     }
 }
+
+exports.sortaccname = async(req,res,next)=>{
+    //Hiển thị danh sach san pham
+    
+    //kiểm tra tồn tại tham số
+    let dieu_kien =null;
+    if(typeof(req.query.name)!='undefined'){
+        let name =req.query.name;
+        dieu_kien={name:name};
+    }
+    
+    
+    //var list=await myModel.spModel.find(dieu_kien).sort({name:1});
+    //cair tieens lay them the loai
+    var list=await db.userModel.find().sort({name:-1});
+    console.log(list);
+    
+    res.render('account/list',{data:list})
+    }

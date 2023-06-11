@@ -61,21 +61,22 @@
 
       <label for="address">Address</label>
       <input type="text" id="address" name="address" value="<%= objAccount.address %>" required>
+      <div class="form-row">
+        <div class="name">Role</div>
+        <div class="value">
+            <div class="input-group">
+                <div class="rs-select2 js-select-simple select--no-search">
+                    <select name="role" class="browser-default custom-select" style="width:200px;background-color: rgb(246, 248, 248);">
+                        <option disabled="disabled" selected="selected">Choose role</option>
+                        <option>Admin</option>
+                        <option>User</option>
 
-      <!-- <label for="role">Role</label>
-      <select name="role" required>
-            <% data.forEach( (account)=>{ 
-                let selected = '';
-                if(String( account._id ) == String(objAccount.role) ){
-                    selected = '  selected ';
-                }
-                %>
-                
-                <option  <%= selected %> 
-                    value="<%= account._id %>"> <%= account.role %>  </option>
-
-            <%   } ) %>
-        </select> -->
+                    </select>
+                    <div class="select-dropdown"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
       <input type="submit" value="Submit">
     </form>

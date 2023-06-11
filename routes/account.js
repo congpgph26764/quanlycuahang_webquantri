@@ -22,9 +22,11 @@ router.get('/logout', check_login.yeu_cau_dang_nhap, accountcontroller.Logout);
 router.get('/add', check_login.yeu_cau_dang_nhap, accountcontroller.addAccount);
 router.post('/add', check_login.yeu_cau_dang_nhap, accountcontroller.addAccount);
 
-router.get('/edit/:idacc', check_login.yeu_cau_dang_nhap, accountcontroller.editAccount);
-router.post('/edit/:idacc', check_login.yeu_cau_dang_nhap, accountcontroller.editAccount);
+router.get('/account/update/:idacc',check_login.yeu_cau_dang_nhap,accountcontroller.editAccount);
+router.post('/account/update/:idacc',check_login.yeu_cau_dang_nhap,accountcontroller.editAccount);
 
 router.get('/remove/:idacc',check_login.yeu_cau_dang_nhap, accountcontroller.deleteAccount);
+
+router.get('/account/sortaccname',check_login.yeu_cau_dang_nhap,accountcontroller.sortaccname);
 
 module.exports = router;
