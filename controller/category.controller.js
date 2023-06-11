@@ -1,5 +1,6 @@
 const fs = require('fs');
 const db = require('../models/model');
+const path = require('path');
 
 
 exports.getHome = async (req,res,next)=>{
@@ -9,17 +10,41 @@ exports.getHome = async (req,res,next)=>{
 exports.addCat = async(req,res,next)=>{
     let msg = ''; // ghi câu thông báo
     var url_image = '';
+    let image = "";
+
+    
 
     let listCat = await db.catModel.find();
 
+    
+
     if(req.method =='POST'){
+
+        
+
         await fs.promises.rename(req.file.path,'./public/uploads/'+req.file.originalname)
         url_image ='/uploads/'+req.file.originalname;
         console.log("upload thành công"+url_image);
+
+        // Đường dẫn đến file ảnh
+        const imagePath = "./public"+url_image;
+        let image ="";
+
+        try {
+            const imageBuffer = fs.readFileSync(imagePath);
+            const base64Image = imageBuffer.toString('base64');
+            const fileExtension = path.extname(imagePath);
+
+            const dataUrl = 'data:image/'+fileExtension+';base64,'+base64Image;
+            image = dataUrl;
+          } catch (error) {
+            console.error('Lỗi khi chuyển đổi ảnh thành Base64:', error);
+          }
+
         
         let objCat = new db.catModel();
         objCat.name = req.body.name;
-        objCat.image = url_image;
+        objCat.image = image;
         
         try{
             let new_cat = await objCat.save();
@@ -29,7 +54,7 @@ exports.addCat = async(req,res,next)=>{
             msg = 'Đã thêm thành công';
         }catch(err){
             console.log(err);
-            msg ='Lỗi '+ error.message;
+            msg ='Lỗi '+ err.message;
 
         }
  
