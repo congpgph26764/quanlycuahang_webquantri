@@ -8,19 +8,21 @@ exports.getHome = async (req,res,next)=>{
 
 exports.addCat = async(req,res,next)=>{
     let msg = ''; // ghi câu thông báo
+    var url_image = '';
+
+    let listCat = await db.catModel.find();
 
     if(req.method =='POST'){
-        // xử lý ghi CSDL ở đây
-        // kiểm tra hợp lệ dữ liệu ở chỗ này.
-
-
-        // tạo đối tượng model 
+        await fs.promises.rename(req.file.path,'./public/uploads/'+req.file.originalname)
+        url_image ='/uploads/'+req.file.originalname;
+        console.log("upload thành công"+url_image);
+        
         let objCat = new db.catModel();
         objCat.name = req.body.name;
+        objCat.image = url_image;
         
         try{
             let new_cat = await objCat.save();
-            
             console.log(new_cat);
 
             console.log("Đã ghi thành công");
@@ -32,7 +34,7 @@ exports.addCat = async(req,res,next)=>{
         }
  
     }
-    res.render( 'category/addcategory',{TieuDe:"Add Category"},)
+    res.render( 'category/addcategory',{listCat:listCat})
 }
 exports.listcat = async(req,res,next)=>{
 var list=await db.catModel.find();

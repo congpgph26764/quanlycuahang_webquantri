@@ -12,24 +12,24 @@ exports.listFeed = async(req,res,next)=>{
     
     res.render('feedback/feedback',{list:list})
     }
-    
+
 exports.addFeed = async(req,res,next)=>{
     let msg = ''; // ghi câu thông báo
-    var url_img = '';
+    var url_image = '';
 
     let listFeed = await db.feedbackModel.find();
 
     if(req.method =='POST'){
         await fs.promises.rename(req.file.path,'./public/uploads/'+req.file.originalname)
-        url_img='/uploads/'+req.file.originalname;
-        console.log("upload thành công"+url_img);
+        url_image ='/uploads/'+req.file.originalname;
+        console.log("upload thành công"+url_image);
 
         let objFeedback = new db.feedbackModel();
         objFeedback.name = req.body.name;
         objFeedback.phone = req.body.phone;
         objFeedback.email = req.body.email;
         objFeedback.comment = req.body.comment;
-        objFeedback.img = url_img;
+        objFeedback.image = url_image;
         
         try{
             let new_feed = await objFeedback.save();

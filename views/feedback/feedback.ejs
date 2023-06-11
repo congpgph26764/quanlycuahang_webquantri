@@ -10,63 +10,63 @@
         <!-- <div class="d-flex" style="margin-bottom: 5px;"><button type="button" class="btn btn-success "
             onclick="location.href='http://localhost:3000/addFeed'">Gửi Feedback</button></div>
         <div class="table-wrap"> -->
-          <table class="table table-responsive-xl">
+        <table class="table table-responsive-xl">
 
-            <thead>
+          <thead>
 
-              <tr>
-                <th>Name</th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Comment</th>
-                <th>Image</th>
-              </tr>
+            <tr>
+              <th>Name</th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>Comment</th>
+              <th>Image</th>
+            </tr>
 
-            </thead>
+          </thead>
 
-            <tbody>
-              <% list.forEach(data=>{%>
-                <tr class="alert" role="alert">
+          <tbody>
+            <% list.forEach(data=>{%>
+              <tr class="alert" role="alert">
 
-                  <td>
-                    <%=data.name %>
-                  </td>
-
-                  <td>
-                    <%=data.phone %>
-                  </td>
-
-                  <td>
-                    <%=data.email %>
-                  </td>
-
-                  <td>
-                    <%=data.comment %>
-                  </td>
-
-                  <td>
-                    <img style="width: 50px; height: 50px;" src="<%= data.img %>">
+                <td>
+                  <%=data.name %>
                 </td>
 
-                  <td>
+                <td>
+                  <%=data.phone %>
+                </td>
 
-                    <button type="submit">
+                <td>
+                  <%=data.email %>
+                </td>
 
-                      <span><a href="/feedback/delete/<%=data._id%>" onclick="return confirm_alert(this);"> <i
-                            class="fa fa-trash"></i></a></span>
-                    </button>
-                  </td>
+                <td>
+                  <%=data.comment %>
+                </td>
 
-                </tr>
+                <td>
+                  <img style="width: 50px; height: 50px;" src="<%= data.image %>">
+                </td>
 
-                <%} ) %>
+                <td>
+
+                  <button type="submit">
+
+                    <span><a href="/feedback/delete/<%=data._id%>" onclick="return confirm_alert(this);"> <i
+                          class="fa fa-trash"></i></a></span>
+                  </button>
+                </td>
+
+              </tr>
+
+              <%} ) %>
 
 
-            </tbody>
-          </table>
-        </div>
+          </tbody>
+        </table>
       </div>
     </div>
+  </div>
   </div>
 
   <script type="text/javascript">

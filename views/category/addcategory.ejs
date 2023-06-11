@@ -4,14 +4,14 @@
         <div class="wrapper wrapper--w790">
             <div class="card">
                 <div class="card-heading">
-                    <h2 class="title" style="color: blue; margin-top: 20px;">THÊM THỂ LOẠI SẢN PHẨM</h2>
+                    <h2 class="title" style="color: blue; margin-top: 20px; text-align: center;">THÊM THỂ LOẠI SẢN PHẨM</h2>
                 </div>
                 <div class="card-body">
-                    <form action="" method="POST">
+                    <form action="" method="POST"  enctype="multipart/form-data">
                         
-                        <div class="form-row" style="margin-left: 5px;">
+                        <div class="form-row" style="margin-left: 20px;">
                             <div class="input-group has-validation">
-                                <span class="input-group-text" id="validationTooltipUsernamePrepend">Name</span>
+                                <span style="width: 96px;" class="input-group-text" id="validationTooltipUsernamePrepend">Name</span>
                                 <input type="text" name="name" class="form-control" id="validationTooltipUsername"
                                   aria-describedby="validationTooltipUsernamePrepend" required>
                                 <div class="invalid-tooltip">
@@ -19,6 +19,15 @@
                                 </div>
                               </div>
                         </div>
+
+                        <div class="form-row" style="margin-top: 10px;">
+                            <div class="input-group has-validation">
+                              <input type="file" name="image" style="margin-left: 20px; padding: 5px;" />
+                              <div class="invalid-tooltip">
+                                Please choose a unique and valid image.
+                              </div>
+                            </div>
+                          </div>
 
                         
                        

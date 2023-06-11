@@ -9,7 +9,7 @@ var multer = require('multer'); // dùng upload file
 var uploader =  multer({dest: './tmp'});
 
 router.get('/addfeed',check_login.yeu_cau_dang_nhap,feedbackcontroller.addFeed)
-router.post('/addfeed',uploader.single('img'),check_login.yeu_cau_dang_nhap,feedbackcontroller.addFeed);
+router.post('/addfeed',uploader.single('image'),check_login.yeu_cau_dang_nhap,feedbackcontroller.addFeed);
 router.get('/feedback',check_login.yeu_cau_dang_nhap,feedbackcontroller.listFeed);
 router.get('/feedback/delete/:idfeed',check_login.yeu_cau_dang_nhap,feedbackcontroller.deleteFeed);
 
