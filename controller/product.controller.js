@@ -1,5 +1,6 @@
 const fs = require('fs');
 const db = require('../models/model');
+const path = require('path');
 
 exports.getHome = async (req,res,next)=>{
     res.render('index');
@@ -84,9 +85,29 @@ exports.getList = async (req,res,next)=>{
 exports.addProduct = async (req,res,next)=>{
    
     let msg = ''; // chứa câu thông báo
+    var url_image = '';
+    let image = "";
+
     let list = await db.catModel.find();
 
     if(req.method =='POST'){
+        await fs.promises.rename(req.file.path, './public/uploads/' + req.file.originalname)
+        url_image = '/uploads/' + req.file.originalname;
+        console.log("upload thành công" + url_image);
+
+        const imagePath = "./public" + url_image;
+        let image = "";
+
+        try {
+            const imageBuffer = fs.readFileSync(imagePath);
+            const base64Image = imageBuffer.toString('base64');
+            const fileExtension = path.extname(imagePath);
+
+            const dataUrl = 'data:image/' + fileExtension + ';base64,' + base64Image;
+            image = dataUrl;
+        } catch (error) {
+            console.error('Lỗi khi chuyển đổi ảnh thành Base64:', error);
+        }
         
         // tạo đối tượng model 
         let objSP = new db.proModel();
@@ -94,6 +115,7 @@ exports.addProduct = async (req,res,next)=>{
         objSP.price = req.body.price;
         objSP.quantity = req.body.quantity;
         objSP.description = req.body.description;
+        objSP.image = image;
         objSP.id_category = req.body.id_category;
         try{
             let new_pro = await objSP.save();
@@ -116,32 +138,25 @@ exports.addProduct = async (req,res,next)=>{
 exports.editProduct = async (req,res,next)=>{
     let msg = ''; // chứa câu thông báo
     // load dữ liệu cũ để hiển thị
-    let objSP = await db.proModel.findById(  req.params.idpro  );
-    console.log( objSP);
-
-    // lấy danh sách thể loại đưa lên form
     let list = await db.catModel.find();
-
+    let objSP = await db.proModel.findById(  req.params.idpro );
+    console.log( objSP);
     if(req.method =='POST'){
-        // xử lý ghi CSDL ở đây
-        // kiểm tra hợp lệ dữ liệu ở chỗ này.
 
-
-        // tạo đối tượng model 
 
         let objSP = new db.proModel();
         objSP.name = req.body.name;
         objSP.price = req.body.price;
         objSP.quantity = req.body.quantity;
         objSP.description = req.body.description;
-        objSP.id_category = req.body.id_category;
-        objSP._id = req.params.idpro;
+        objSP.image = image;
+        objSP._id=req.params.idpro;
         try{
              
             // update dữ liệu
             // await myModel.spModel.updateOne( {_id:  req.params.idsp},   objSP );
-             await db.proModel.findByIdAndUpdate({_id: req.params.idpro},objSP);
-
+             await db.proModel.findByIdAndUpdate({_id:req.params.idpro},objSP);
+             res.redirect('/product');
             console.log("Đã ghi thành công");
             msg = 'Đã ghi thành công';
         }catch(err){
@@ -156,21 +171,51 @@ exports.editProduct = async (req,res,next)=>{
             {msg:msg, objSP: objSP,data:list})
 
 }
-exports.deleteProduct = async (req,res,next)=>{
+exports.deleteproduct = async (req,res,next)=>{
+    let msg = ''; // chứa câu thông báo
+    // load dữ liệu cũ để hiển thị
+    let objProduct = await db.proModel.findById(  req.params.idpro  );
+    console.log( objProduct);
+        
+        try{
+             
+            // update dữ liệu
+            // await myModel.spModel.updateOne( {_id:  req.params.idsp},   objSP );
+             await db.proModel.findByIdAndDelete({_id:req.params.idpro});
+             res.redirect('/product');
 
-    let deleteProduct = await db.proModel.deleteOne({_id: req.params.idpro}).exec();
+            console.log("Đã xóa thành công");
+            msg = 'Đã ghi thành công';
+        }catch(err){
+            console.log(err);
+            msg ='Lỗi '+ err.message;
 
-    if(deleteProduct){
-        console.log("xoa thanh cong");
-        res.redirect('/product');
-    }else{
-        console.log("xoá null");
-        res.redirect('/product');
-    }
+        }
+ 
+
+    res.render('product/list', {msg:msg});
+
 }
 exports.getDetail = async (req,res,next)=>{
     res.render('product/detailpro')
-
 }
+exports.sortproname = async(req,res,next)=>{
+    //Hiển thị danh sach san pham
+    
+    //kiểm tra tồn tại tham số
+    let dieu_kien =null;
+    if(typeof(req.query.name)!='undefined'){
+        let name =req.query.name;
+        dieu_kien={name:name};
+    }
+    
+    
+    //var list=await myModel.spModel.find(dieu_kien).sort({name:1});
+    //cair tieens lay them the loai
+    var list=await db.proModel.find().sort({name:-1});
+    console.log(list);
+    
+    res.render('product/list',{data:list})
+    }
 
 

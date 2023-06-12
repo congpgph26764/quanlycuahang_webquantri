@@ -1,88 +1,84 @@
-<%- include('../inc/top', { title: 'EDIT PRODUCT' }); %>
+<%- include('../inc/top', { title: 'ADD PRODUCT' }); %>
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Thêm Sản phẩm</title>
+  <title>Sửa<address></address> Sản phẩm</title>
   <style>
     .form-container {
       max-width: 400px;
       margin: 0 auto;
+      padding: 20px;
+      background-color: #f2f2f2;
+      border-radius: 5px;
     }
 
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    .form-group input[type="text"],
-    .form-group textarea {
+    .form-container input[type=text], .form-container input[type=number], .form-container textarea, .form-container select {
       width: 100%;
-      padding: 10px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
       border: 1px solid #ccc;
+      box-sizing: border-box;
       border-radius: 4px;
     }
 
-    .form-group input[type="number"] {
-      width: 250px;
-    }
-
-    .form-group input[type="submit"] {
-      padding: 10px 20px;
+    .form-container input[type=submit] {
       background-color: #4CAF50;
-      color: #fff;
+      color: white;
+      padding: 12px 20px;
       border: none;
       border-radius: 4px;
       cursor: pointer;
+      float: right;
+    }
+
+    .form-container input[type=submit]:hover {
+      background-color: #45a049;
+    }
+
+    .form-container::after {
+      content: "";
+      display: table;
+      clear: both;
     }
   </style>
 </head>
 <body>
   <div class="form-container">
     <h2>Sửa Sản phẩm</h2>
-    <form action="" method="post">
+    <form action="" method="post" enctype="multipart/form-data">
       <div class="form-group">
-        <label for="name">Tên sản phẩm:</label>
-        <input type="text" id="name" name="name" required value="<%= objSP.name %>">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name"  required>
       </div>
       <div class="form-group">
-        <label for="price">Giá:</label>
-        <input type="number" id="price" name="price" required value="<%= objSP.price %>">
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" required>
       </div>
       <div class="form-group">
-        <label for="quantity">Số lượng:</label>
-        <input type="number" id="quantity" name="quantity" required value="<%= objSP.quantity %>">
+        <label for="quantity">Quantity:</label>
+        <input type="number" id="quantity" name="quantity" required>
       </div>
       <div class="form-group">
-        <label for="description">Mô tả:</label>
-        <input type="text" id="description" name="description" required value="<%= objSP.description %>">
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" rows="4" required></textarea>
       </div>
       <div class="form-group">
-        <label for="image">Image:</label>       
-        <img style="width: 100px; height: 100px;" id="image" name="image" required src="<%= objSP.image %>" alt="Ảnh sản phẩm">
-        <input type="file" id="image" name="image" value="Chọn ảnh khác">
+        <label for="image">Image</label>
+        <input type="file" id="image" name="image" required>
       </div>
       <div class="form-group">
-        <label for="category">Thể loại:</label>
+        <label for="category">Status:</label>
         <select name="id_category" >
-            <% data.forEach( (objTL)=>{ 
-                let selected = '';// xác định thể loại đã chọn của sp
-                if(String( objTL._id ) == String(objSP.id_category) ){
-                    selected = '  selected ';
-                }
-                %>
-                
-                <option  <%= selected %> 
-                    value="<%= objTL._id %>"> <%= objTL.name %>  </option>
+          <% data.forEach( (objTL)=>{ %>
+              
+              <option value="<%= objTL._id %>"> <%= objTL.name %>  </option>
 
-            <%   } ) %>
-        </select>
+          <%   } ) %>
+      </select>
       </div>
       <div class="form-group">
-        <input type="submit" value="Sửa sản phẩm">
+        <input type="submit" value="Submit">
       </div>
     </form>
   </div>

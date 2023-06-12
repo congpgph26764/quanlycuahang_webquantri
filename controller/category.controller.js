@@ -103,6 +103,7 @@ if(req.method =='POST'){
 
     let objCat = new db.catModel();
     objCat.name = req.body.name;
+    objCat.image = image;
     objCat._id = req.params.idcat;
     try{
          
