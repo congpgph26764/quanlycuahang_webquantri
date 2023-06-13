@@ -137,11 +137,30 @@ exports.addProduct = async (req,res,next)=>{
 }
 exports.editProduct = async (req,res,next)=>{
     let msg = ''; // chứa câu thông báo
+    var url_image = '';
+    let image = "";
     // load dữ liệu cũ để hiển thị
     let list = await db.catModel.find();
     let objSP = await db.proModel.findById(  req.params.idpro );
     console.log( objSP);
     if(req.method =='POST'){
+        await fs.promises.rename(req.file.path, './public/uploads/' + req.file.originalname)
+        url_image = '/uploads/' + req.file.originalname;
+        console.log("upload thành công" + url_image);
+
+        const imagePath = "./public" + url_image;
+        let image = "";
+
+        try {
+            const imageBuffer = fs.readFileSync(imagePath);
+            const base64Image = imageBuffer.toString('base64');
+            const fileExtension = path.extname(imagePath);
+
+            const dataUrl = 'data:image/' + fileExtension + ';base64,' + base64Image;
+            image = dataUrl;
+        } catch (error) {
+            console.error('Lỗi khi chuyển đổi ảnh thành Base64:', error);
+        }
 
 
         let objSP = new db.proModel();
