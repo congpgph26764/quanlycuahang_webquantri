@@ -116,6 +116,7 @@ exports.addProduct = async (req,res,next)=>{
         objSP.quantity = req.body.quantity;
         objSP.description = req.body.description;
         objSP.image = image;
+        objSP.status = req.body.status;
         objSP.id_category = req.body.id_category;
         try{
             let new_pro = await objSP.save();
@@ -168,6 +169,7 @@ exports.editProduct = async (req,res,next)=>{
         objSP.price = req.body.price;
         objSP.quantity = req.body.quantity;
         objSP.description = req.body.description;
+        objSP.status = req.body.status;
         objSP.image = image;
         objSP._id=req.params.idpro;
         try{
@@ -221,6 +223,7 @@ exports.getDetail = async (req,res,next)=>{
 exports.sortproname = async(req,res,next)=>{
     //Hiển thị danh sach san pham
     
+    let list_cat = await db.catModel.find();
     //kiểm tra tồn tại tham số
     let dieu_kien =null;
     if(typeof(req.query.name)!='undefined'){
@@ -231,10 +234,10 @@ exports.sortproname = async(req,res,next)=>{
     
     //var list=await myModel.spModel.find(dieu_kien).sort({name:1});
     //cair tieens lay them the loai
-    var list=await db.proModel.find().sort({name:-1});
+    var list=await db.proModel.find().populate('id_category').sort({name:-1});
     console.log(list);
     
-    res.render('product/list',{data:list})
+    res.render('product/list',{data:list, list_cat: list_cat})
     }
 
 

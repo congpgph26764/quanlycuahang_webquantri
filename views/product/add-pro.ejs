@@ -63,17 +63,16 @@
         <label for="description">Description:</label>
         <textarea id="description" name="description" rows="4" required></textarea>
       </div>
+
       
-      <div class="form-row" style="margin-top: 10px;">
-        <div class="input-group has-validation">
-          <input type="file" name="image" style="margin-left: 20px; padding: 5px;" />
-          <div class="invalid-tooltip">
-            Please choose a unique and valid image.
-          </div>
-        </div>
-      </div>
+      <label for="role">Status</label>
+      <select id="status" name="status" required>
+        <option value="New">New</option>
+        <option value="Old">Old</option>
+      </select>
+      
       <div class="form-group">
-        <label for="category">Status:</label>
+        <label for="category">Category:</label>
         <select name="id_category" >
           <% data.forEach( (objTL)=>{ %>
               
@@ -81,6 +80,15 @@
 
           <%   } ) %>
       </select>
+      </div>
+
+      <div class="form-row" style="margin-top: 10px;">
+        <div class="input-group has-validation">
+          <input type="file" name="image" style="margin-left: 20px; padding: 5px;" />
+          <div class="invalid-tooltip">
+            Please choose a unique and valid image.
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <input type="submit" value="Submit">
