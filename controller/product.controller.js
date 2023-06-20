@@ -239,5 +239,17 @@ exports.sortproname = async(req,res,next)=>{
     
     res.render('product/list',{data:list, list_cat: list_cat})
     }
+    
+    exports.getDetailProduct = async (req, res, next) => {
+        let msg = ''; // chứa câu thông báo
+        // load dữ liệu cũ để hiển thị
+    
+        let listTL = await db.catModel.find();
+        let objProduct = await db.proModel.findById(req.params.idsp).populate('id_category');
+        console.log( objProduct);   
+    
+        res.render('product/productDetail', 
+                {msg:msg, objProduct: objProduct, listTL: listTL})
+    }
 
 

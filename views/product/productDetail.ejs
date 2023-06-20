@@ -1,0 +1,29 @@
+<%- include('../inc/top') %>
+<div style="text-align: center; margin: 50px;">
+    <h2 style="color: blue;">CHI TIẾT SẢN PHẨM</h2>
+</div>
+<div class="row" style="margin: 40px;">
+    <section>
+        <div class="container d-flex">
+            <div class="left" style="margin-left: 20px;">
+                <div class="main_image">
+                    <img src="<%= objProduct.image %>" style="width: 390px;">
+                </div>
+
+            </div>
+            <div class="right" style="margin: 60px; margin-left: 100px; padding: 10px;">
+                <h3 style="color: #ac2bac;">
+                    <%= objProduct.name %>
+                </h3>
+                <h4 style="color: #dd4b39;"> <small>$</small>
+                    <%= objProduct.price %>
+                </h4>
+                <h5 style="margin-top: 10px;">Loại sản phẩm: <%= objProduct.id_category.name %>
+                </h5>
+                <p>
+                   Mô tả: <%=objProduct.description %>
+                </p>
+
+            </div>
+    </section>
+    <%- include('../inc/bottom') %>
