@@ -9,6 +9,7 @@ var accRouter = require('./routes/account');
 var proRouter = require('./routes/product');
 var catRouter = require('./routes/category');
 var feddRouter = require('./routes/feedback');
+var statistic = require('./routes/statistic');
 
 var apiRouter = require('./routes/api');
 
@@ -35,6 +36,7 @@ app.use('/',accRouter);
 app.use('/', proRouter);
 app.use('/', catRouter);
 app.use('/', feddRouter);
+app.use('/', statistic);
 
 app.use('/api', apiRouter);
 
