@@ -2,15 +2,16 @@
   <div class="container">
     <div class="row justify-content-center" style="margin-top: 10px;">
       <div class="col-md-6 text-center mb-5">
-        <h2 class="heading-section"><b>QUẢN LÍ NGƯỜI DÙNG</b></h2>
+        <h2 class="heading-section" style="margin-top: 40px; color: darkblue;"><b
+            style="font-size: 30px; font-weight: 500;">QUẢN LÝ NGƯỜI DÙNG</b></h2>
       </div>
     </div>
     <div class="row">
       <div class="col-md-12">
-        <div class="d-flex" style="margin-bottom: 5px;"><button type="button" class="btn btn-success "
+        <div class="d-flex float-lg-end" style="margin-bottom: 20px;"><button type="button" class="btn btn-outline-primary"
             onclick="location.href='http://localhost:3000/add'">Thêm Người Dùng</button></div>
         <div class="table-wrap">
-          <table class="table table-responsive-xl">
+          <table class="table table-bordered table-striped">
             <thead class="thead-dark">
               <tr>
                 <th><a style="color: black; text-decoration: none;"
@@ -52,12 +53,11 @@
                     <button type="submit">
                       <div>
 
-                          <span><a href="/account/update/<%=data._id%>"
-                                  onclick="return mconfirm_alert(this);"><i
-                                      class="bi bi-pencil-square"></i></i></a></span>
+                        <span><a href="/account/update/<%=data._id%>" onclick="return mconfirm_alert(this);"><i
+                              class="bi bi-pencil-square"></i></i></a></span>
                       </div>
-                  </button>
-<!-- 
+                    </button>
+                    <!-- 
                     <button type="submit">
 
                       <span><a href="/category/delete/<%=data._id%>" onclick="return confirm_alert(this);"> <i
