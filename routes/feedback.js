@@ -11,4 +11,6 @@ router.post('/addfeed',uploader.single('image'),check_login.yeu_cau_dang_nhap,fe
 router.get('/feedback',check_login.yeu_cau_dang_nhap,feedbackcontroller.listFeed);
 router.get('/feedback/delete/:idfeed',check_login.yeu_cau_dang_nhap,feedbackcontroller.deleteFeed);
 
+router.get('/detail/:idfeed',check_login.yeu_cau_dang_nhap,feedbackcontroller.getDetailFeed);
+
 module.exports = router;

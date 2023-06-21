@@ -25,7 +25,9 @@
                     <% list.forEach(data=>{%>
                       <tr>
                         <td>
-                          <%=data.name %>
+                          <a style="text-decoration: none;" href="/detail/<%= data._id %>">
+                            <%=data.name %>
+                          </a>
                         </td>
                         <td>
                           <%=data.phone %>

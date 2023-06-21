@@ -86,3 +86,13 @@ exports.deleteFeed = async (req, res, next) => {
         { msg: msg })
 
 }
+
+exports.getDetailFeed = async (req, res, next) => {
+    let msg = ''; // chứa câu thông báo
+    // load dữ liệu cũ để hiển thị
+
+    let objFeed = await db.feedbackModel.findById(req.params.idfeed)
+    console.log(objFeed);
+    res.render('feedback/feedbackdetail',
+        { msg: msg, objFeed: objFeed })
+}

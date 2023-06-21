@@ -1,0 +1,32 @@
+<%- include('../inc/top', { title: 'DETAIL PRODUCT' }); %>
+<div style="text-align: center; margin: 50px;">
+    <h2 style="color: blue;">FEEDBACK DETAILS</h2>
+</div>
+<div class="row" style="margin: 40px;">
+    <section>
+        <div class="container d-flex">
+            <div class="left" style="margin-left: 20px;">
+                <div class="main_image">
+                    <img src="<%= objFeed.image %>" style="width: 390px;">
+                </div>
+            </div>
+            <div class="right" style="margin: 60px; margin-left: 100px; padding: 10px;">
+                <h3 style="color: #ac2bac;"> Name: 
+                    <%= objFeed.name %>
+                </h3>
+
+                <p style="color: #dd4b39;"> Phone: 
+                    <%= objFeed.phone %>
+                </p> 
+
+                <p style="color: #dd4b39;"> Email: 
+                    <%= objFeed.email %>
+                </p> 
+
+                <p style="color: #dd4b39;"> Comment: 
+                    <%= objFeed.comment %>
+                </p> 
+            </div>
+            </div>
+    </section>
+    <%- include('../inc/bottom') %>
