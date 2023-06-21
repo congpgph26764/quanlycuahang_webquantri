@@ -3,8 +3,6 @@ var router = express.Router();
 var categorycontroller = require('../controller/category.controller');
 var check_login = require('../middleware/check_login');
 
-router.get('/', check_login.yeu_cau_dang_nhap, categorycontroller.getHome);
-
 var multer = require('multer'); // dùng upload file
 var uploader =  multer({dest: './tmp'});
 

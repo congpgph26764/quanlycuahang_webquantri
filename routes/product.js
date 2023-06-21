@@ -6,8 +6,6 @@ var check_login = require('../middleware/check_login');
 var multer = require('multer'); // dùng upload file
 var uploader =  multer({dest: './tmp'});
 
-router.get('/', check_login.yeu_cau_dang_nhap, productcontroller.getHome);
-
 router.get('/product', check_login.yeu_cau_dang_nhap, productcontroller.getList);
 router.post('/product', check_login.yeu_cau_dang_nhap, productcontroller.getList);
 

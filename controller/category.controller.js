@@ -2,11 +2,6 @@ const fs = require('fs');
 const db = require('../models/model');
 const path = require('path');
 
-
-exports.getHome = async (req, res, next) => {
-    res.render('index');
-}
-
 exports.addCat = async (req, res, next) => {
     let msg = ''; // ghi câu thông báo
     var url_image = '';

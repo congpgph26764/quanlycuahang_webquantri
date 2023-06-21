@@ -2,9 +2,6 @@ const fs = require('fs');
 const db = require('../models/model');
 const path = require('path');
 
-exports.getHome = async (req,res,next)=>{
-    res.render('index');
-}
 exports.getList = async (req,res,next)=>{
 
     let dieu_kien = null;

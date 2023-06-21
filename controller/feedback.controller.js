@@ -2,11 +2,6 @@ const fs = require('fs');
 const db = require('../models/model');
 const path = require('path');
 
-
-exports.getHome = async (req, res, next) => {
-    res.render('index');
-}
-
 exports.listFeed = async (req, res, next) => {
     var list = await db.feedbackModel.find();
     console.log(list);

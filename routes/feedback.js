@@ -3,8 +3,6 @@ var router = express.Router();
 var feedbackcontroller = require('../controller/feedback.controller');
 var check_login = require('../middleware/check_login');
 
-router.get('/', check_login.yeu_cau_dang_nhap, feedbackcontroller.getHome);
-
 var multer = require('multer'); // dùng upload file
 var uploader =  multer({dest: './tmp'});
 

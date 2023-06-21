@@ -14,91 +14,7 @@
     
   </head>
   <body>
-    <!-- top navigation bar -->
-    <%- include('./inc/top') %>
-    <!-- top navigation bar -->
-    <!-- offcanvas -->
-    <div
-      class="offcanvas offcanvas-start sidebar-nav bg-dark"
-      tabindex="-1"
-      id="sidebar"
-    >
-      <div class="offcanvas-body p-0">
-        <nav class="navbar-dark">
-          <ul class="navbar-nav">
-            <li>
-              <div class="text-muted small fw-bold text-uppercase px-3">
-                CORE
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3 active">
-                <span class="me-2"><i class="bi bi-speedometer2"></i></span>
-                <span>Dashboard</span>
-              </a>
-            </li>
-            <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
-            <li>
-              <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
-                Interface
-              </div>
-            </li>
-            <li>
-              <a
-                class="nav-link px-3 sidebar-link"
-                data-bs-toggle="collapse"
-                href="#layouts"
-              >
-                <span class="me-2"><i class="bi bi-layout-split"></i></span>
-                <span>Layouts</span>
-                <span class="ms-auto">
-                  <span class="right-icon">
-                    <i class="bi bi-chevron-down"></i>
-                  </span>
-                </span>
-              </a>
-              <div class="collapse" id="layouts">
-                <ul class="navbar-nav ps-3">
-                  <li>
-                    <a href="#" class="nav-link px-3">
-                      <span class="me-2"
-                        ><i class="bi bi-speedometer2"></i
-                      ></span>
-                      <span>Dashboard</span>
-                    </a>
-                  </li>
-                </ul>
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-book-fill"></i></span>
-                <span>Pages</span>
-              </a>
-            </li>
-            <li class="my-4"><hr class="dropdown-divider bg-light" /></li>
-            <li>
-              <div class="text-muted small fw-bold text-uppercase px-3 mb-3">
-                Addons
-              </div>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-graph-up"></i></span>
-                <span>Charts</span>
-              </a>
-            </li>
-            <li>
-              <a href="#" class="nav-link px-3">
-                <span class="me-2"><i class="bi bi-table"></i></span>
-                <span>Tables</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </div>
-    </div>
-    <!-- offcanvas -->
+    <%- include('./inc/top', { title: 'HOME' }); %>
     <main class="mt-5 pt-3">
       <div class="container-fluid">
         <div class="row">
@@ -109,73 +25,119 @@
         <div class="row">
           <div class="col-md-3 mb-3">
             <div class="card bg-primary text-white h-100">
-              <div class="card-body py-5">Primary Card</div>
-              <div class="card-footer d-flex">
-                View Details
+              <div class="card-body py-5 d-flex">Category Card
                 <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
+                  <%=cat%>
                 </span>
+              </div>
+              <div class="card-footer">
+                <a class="text-reset d-flex" style="text-decoration: none;" href="/category">
+                  View Details
+                  <span class="ms-auto">
+                    <i class="bi bi-chevron-right"></i>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
           <div class="col-md-3 mb-3">
-            <div class="card bg-warning text-dark h-100">
-              <div class="card-body py-5">Warning Card</div>
-              <div class="card-footer d-flex">
-                View Details
+            <div class="card bg-warning text-white h-100">
+              <div class="card-body py-5 d-flex">Product Card
                 <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
+                  <%=pro%>
                 </span>
+              </div>
+              <div class="card-footer">
+                <a class="text-reset d-flex" style="text-decoration: none;" href="/product">
+                  View Details
+                  <span class="ms-auto">
+                    <i class="bi bi-chevron-right"></i>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <div class="card bg-success text-white h-100">
-              <div class="card-body py-5">Success Card</div>
-              <div class="card-footer d-flex">
-                View Details
+              <div class="card-body py-5 d-flex">Feedback Card
                 <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
+                  <%=feedback%>
                 </span>
+              </div>
+              <div class="card-footer">
+                <a class="text-reset d-flex" style="text-decoration: none;" href="/feedback">
+                  View Details
+                  <span class="ms-auto">
+                    <i class="bi bi-chevron-right"></i>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
           <div class="col-md-3 mb-3">
             <div class="card bg-danger text-white h-100">
-              <div class="card-body py-5">Danger Card</div>
-              <div class="card-footer d-flex">
-                View Details
+              <div class="card-body py-5 d-flex">Account Card
                 <span class="ms-auto">
-                  <i class="bi bi-chevron-right"></i>
+                  <%=acc%>
                 </span>
+              </div>
+              <div class="card-footer">
+                <a class="text-reset d-flex" style="text-decoration: none;" href="/account">
+                  View Details
+                  <span class="ms-auto">
+                    <i class="bi bi-chevron-right"></i>
+                  </span>
+                </a>
               </div>
             </div>
           </div>
         </div>
         <div class="row">
-          <div class="col-md-6 mb-3">
+          <div class=" col-md-8 mb-3">
             <div class="card h-100">
               <div class="card-header">
                 <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                Area Chart Example
+                2023
               </div>
               <div class="card-body">
-                <canvas class="chart" width="400" height="200"></canvas>
+                <canvas id="column-chart"></canvas>
               </div>
             </div>
           </div>
-          <div class="col-md-6 mb-3">
-            <div class="card h-100">
+
+          <div class="col-md-4 mb-3">
+            <div class="card">
               <div class="card-header">
-                <span class="me-2"><i class="bi bi-bar-chart-fill"></i></span>
-                Area Chart Example
+                <span><i class="bi bi-table me-2"></i></span> Year Table
               </div>
               <div class="card-body">
-                <canvas class="chart" width="400" height="200"></canvas>
+                <div class="table-responsive">
+                  <table
+                    id="example"
+                    class="table table-striped"
+                    style="width: 100%"
+                  >
+                    <thead>
+                      <tr>
+                        <th>Year</th>
+                        <th>Total</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <% totalByYear.forEach(data=>{%>
+                      <tr>
+                        <td><%- Object.keys(data) %></td>
+                        <td><%- Object.values(data) %> đ</td>
+                      </tr>  
+                      <%})%>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        </div>
+        
         <div class="row">
           <div class="col-md-12 mb-3">
             <div class="card">
@@ -192,30 +154,31 @@
                     <thead>
                       <tr>
                         <th>Name</th>
-                        <th>Position</th>
-                        <th>Office</th>
-                        <th>Age</th>
-                        <th>Start date</th>
-                        <th>Salary</th>
+                        <th>Image</th>
+                        <th>Price</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Quantity Sell</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td>Tiger Nixon</td>
-                        <td>System Architect</td>
-                        <td>Edinburgh</td>
-                        <td>61</td>
-                        <td>2011/04/25</td>
-                        <td>$320,800</td>
-                      </tr>
-                      <tr>
-                        <td>Garrett Winters</td>
-                        <td>Accountant</td>
-                        <td>Tokyo</td>
-                        <td>63</td>
-                        <td>2011/07/25</td>
-                        <td>$170,750</td>
-                      </tr>
+                      <% data.forEach(data=>{
+                        let sell = 0;
+                        listdbill.forEach(i => {
+                          if (i.name == data.name) {
+                              sell += i.quantity;
+                          }
+                        });%>
+                            <tr>
+                              <td><%=data.name %></td>
+                              <td><img style="width: 80px; height: 75px;" src="<%= data.image %>"></td>
+                              <td><%=data.price %></td>
+                              <td><%=data.id_category.name %></td>
+                              <td><%=data.status %></td>
+                              <td><%=sell %></td>
+                            </tr>
+                          
+                      <%} ) %>
                   </table>
                 </div>
               </div>
@@ -225,10 +188,52 @@
       </div>
     </main>
     <script src="./js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.0.2/dist/chart.min.js"></script>
     <script src="./js/jquery-3.5.1.js"></script>
     <script src="./js/jquery.dataTables.min.js"></script>
     <script src="./js/dataTables.bootstrap5.min.js"></script>
     <script src="./js/script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+      var totalByMonth = <%- JSON.stringify(totalByMonth) %>;
+      
+      const canvas = document.getElementById('column-chart').getContext("2d");
+    
+      // Dữ liệu biểu đồ
+      
+      const data = {
+        labels: <%- JSON.stringify(Object.keys(totalByMonth)) %>,
+        datasets: [{
+          label: 'Doanh thu',
+          data: <%- JSON.stringify(Object.values(totalByMonth)) %>,
+          backgroundColor: 'rgba(54, 162, 235, 0.5)',
+          borderColor: 'rgba(54, 162, 235, 1)',
+          borderWidth: 1
+        }]
+      };
+    
+      // Cấu hình biểu đồ
+      const config = {
+        type: 'bar',
+        data: data,
+        options: {
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      };
+    
+      // Vẽ biểu đồ vào canvas
+      new Chart(canvas, config);
+
+    </script>
+
+
+    <%- include('./inc/bottom'); %>
   </body>
 </html>
+
+
