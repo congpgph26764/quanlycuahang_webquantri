@@ -12,6 +12,5 @@ router.get('/category',check_login.yeu_cau_dang_nhap,categorycontroller.listcat)
 router.get('/category/delete/:idcat',check_login.yeu_cau_dang_nhap,categorycontroller.deleteCat);
 router.get('/category/update/:idcat',check_login.yeu_cau_dang_nhap,categorycontroller.editcat);
 router.post('/category/update/:idcat',uploader.single('image'),check_login.yeu_cau_dang_nhap,categorycontroller.editcat);
-router.get('/category/sortcatname',check_login.yeu_cau_dang_nhap,categorycontroller.sortcatname);
 
 module.exports = router;

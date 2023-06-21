@@ -27,6 +27,4 @@ router.post('/account/update/:idacc',check_login.yeu_cau_dang_nhap,accountcontro
 
 router.get('/remove/:idacc',check_login.yeu_cau_dang_nhap, accountcontroller.deleteAccount);
 
-router.get('/account/sortaccname',check_login.yeu_cau_dang_nhap,accountcontroller.sortaccname);
-
 module.exports = router;

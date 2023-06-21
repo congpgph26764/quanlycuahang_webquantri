@@ -20,8 +20,6 @@ router.post('/product/update/:idpro',uploader.single('image'),check_login.yeu_ca
 
 router.get('/product/delete/:idpro',check_login.yeu_cau_dang_nhap,productcontroller.deleteproduct);
 
-router.get('/product/sortproname',check_login.yeu_cau_dang_nhap,productcontroller.sortproname);
-
 router.get('/details/:idsp',check_login.yeu_cau_dang_nhap,productcontroller.getDetailProduct);
 
 module.exports = router;
