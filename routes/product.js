@@ -9,9 +9,6 @@ var uploader =  multer({dest: './tmp'});
 router.get('/product', check_login.yeu_cau_dang_nhap, productcontroller.getList);
 router.post('/product', check_login.yeu_cau_dang_nhap, productcontroller.getList);
 
-router.get('/product/detailpro/:idpro', check_login.yeu_cau_dang_nhap, productcontroller.getDetail);
-router.post('/product/detailpro/:idpro', check_login.yeu_cau_dang_nhap, productcontroller.getDetail);
-
 router.get('/add-pro', check_login.yeu_cau_dang_nhap, productcontroller.addProduct);
 router.post('/add-pro',uploader.single('image'), check_login.yeu_cau_dang_nhap, productcontroller.addProduct);
 

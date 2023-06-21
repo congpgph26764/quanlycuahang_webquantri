@@ -213,9 +213,6 @@ exports.deleteproduct = async (req, res, next) => {
     res.render('product/list', { msg: msg });
 
 }
-exports.getDetail = async (req, res, next) => {
-    res.render('product/detailpro')
-}
 
 exports.getDetailProduct = async (req, res, next) => {
     let msg = ''; // chứa câu thông báo

@@ -1,6 +1,6 @@
 <%- include('../inc/top', { title: 'DETAIL PRODUCT' }); %>
 <div style="text-align: center; margin: 50px;">
-    <h2 style="color: blue;">CHI TIẾT SẢN PHẨM</h2>
+    <h2 style="color: blue;">PRODUCT DETAILS</h2>
 </div>
 <div class="row" style="margin: 40px;">
     <section>
@@ -12,16 +12,17 @@
 
             </div>
             <div class="right" style="margin: 60px; margin-left: 100px; padding: 10px;">
-                <h3 style="color: #ac2bac;">
+                <h3 style="color: #ac2bac;"> Name: 
                     <%= objProduct.name %>
                 </h3>
-                <h4 style="color: #dd4b39;"> <small>$</small>
+                <p style="color: #dd4b39;"> Price: 
                     <%= objProduct.price %>
-                </h4>
-                <h5 style="margin-top: 10px;">Loại sản phẩm: <%= objProduct.id_category.name %>
-                </h5>
-                <p>
-                   Mô tả: <%=objProduct.description %>
+                    <small>VND</small>
+                </p> 
+                <p style="margin-top: 10px;">Category: <%= objProduct.id_category.name %>
+                </p>
+                <p> 
+                    Description: <%=objProduct.description %>
                 </p>
 
             </div>
