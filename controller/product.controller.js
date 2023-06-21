@@ -160,14 +160,13 @@ exports.editProduct = async (req,res,next)=>{
             console.error('Lỗi khi chuyển đổi ảnh thành Base64:', error);
         }
 
-
         let objSP = new db.proModel();
         objSP.name = req.body.name;
         objSP.price = req.body.price;
         objSP.quantity = req.body.quantity;
         objSP.description = req.body.description;
-        objSP.status = req.body.status;
         objSP.image = image;
+        objSP.status = req.body.status;
         objSP._id=req.params.idpro;
         try{
              

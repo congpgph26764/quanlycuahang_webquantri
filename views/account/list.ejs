@@ -1,80 +1,81 @@
-<%- include('../inc/top', { title: 'LIST ACCOUNT' }); %>
-  <div class="container">
-    <div class="row justify-content-center" style="margin-top: 10px;">
-      <div class="col-md-6 text-center mb-5">
-        <h2 class="heading-section" style="margin-top: 40px; color: darkblue;"><b
-            style="font-size: 30px; font-weight: 500;">QUẢN LÝ NGƯỜI DÙNG</b></h2>
-      </div>
-    </div>
+<%- include('../inc/top'); %>
+<div class="container">
+  <main class="mt-5 pt-3">
     <div class="row">
       <div class="col-md-12">
-        <div class="d-flex float-lg-end" style="margin-bottom: 20px;"><button type="button" class="btn btn-outline-primary"
-            onclick="location.href='http://localhost:3000/add'">Thêm Người Dùng</button></div>
-        <div class="table-wrap">
-          <table class="table table-bordered table-striped">
-            <thead class="thead-dark">
-              <tr>
-                <th><a style="color: black; text-decoration: none;"
-                    href="http://localhost:3000/account/sortaccname">Name</a>
-                </th>
-                <th>Phone</th>
-                <th>Email</th>
-                <th>Addres</th>
-                <th>Role</th>
-                <th>&nbsp;</th>
-              </tr>
-            </thead>
-            <tbody>
-              <% data.forEach(data=>{%>
-                <tr class="alert" role="alert">
+        <h2 style="text-align: center; margin-bottom: 65px; color: darkblue;">ACCOUNT</h2>
+      </div>
 
-                  <td>
-                    <%=data.name %>
-                  </td>
+      <div class="d-flex float-lg-end" style="margin-bottom: 10px; margin-left: 20px;"><button type="button"
+          class="btn btn-outline-primary " onclick="location.href='http://localhost:3000/add'">Thêm Tài Khoản</button></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table id="example" class="table table-striped data-table" style="width: 100%">
+                <thead>
+                  <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Address</th>
+                    <th>Role</th>
+                    <th>&nbsp;</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <% data.forEach(data=>{%>
+                    <tr>
+                      <td>
+                          <%=data.name %>
+                      </td>
 
-                  <td>
-                    <%=data.phone %>
-                  </td>
+                      <td>
+                        <%=data.email %>
+                      </td>
 
-                  <td>
-                    <%=data.email %>
-                  </td>
+                      <td>
+                        <%=data.phone %>
+                      </td>
 
-                  <td>
-                    <%=data.address %>
-                  </td>
+                      <td>
+                        <%=data.address %>
+                      </td>
 
-                  <td>
-                    <%=data.role %>
-                  </td>
+                      <td>
+                        <%=data.role %>
+                      </td>
 
-                  <td>
+                      <td>
+                        <button type="submit">
+                          <div>
 
-                    <button type="submit">
-                      <div>
+                            <span><a href="/account/update/<%=data._id%>" onclick="return mconfirm_alert(this);"><i
+                                  class="bi bi-pencil-square"></i></i></a></span>
+                          </div>
+                        </button>
+                        <!-- 
+                                                <button type="submit">
 
-                        <span><a href="/account/update/<%=data._id%>" onclick="return mconfirm_alert(this);"><i
-                              class="bi bi-pencil-square"></i></i></a></span>
-                      </div>
-                    </button>
-                    <!-- 
-                    <button type="submit">
+                                                    <span><a href="/category/delete/<%=data._id%>" onclick="return confirm_alert(this);"> <i
+                                                          class="fa fa-trash"></i></a></span>
+                                                  </button> -->
 
-                      <span><a href="/category/delete/<%=data._id%>" onclick="return confirm_alert(this);"> <i
-                            class="fa fa-trash"></i></a></span>
-                    </button> -->
-                  </td>
-                </tr>
-
-                <%} ) %>
-
-
-            </tbody>
-          </table>
+                      </td>
+                    </tr>
+                    <%} ) %>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+    </div>
+  </main>
+</div>
   <!-- <script type="text/javascript">
         function confirm_alert(node) {
             return confirm("Bạn có chắc chắn xóa không ?");
@@ -85,5 +86,6 @@
       return confirm("Bạn có chắc chắn sửa không ?");
     }
   </script>
+  <%- include('../inc/bottom'); %>
 
-  <%- include('../inc/bottom') %>
+    </html>
