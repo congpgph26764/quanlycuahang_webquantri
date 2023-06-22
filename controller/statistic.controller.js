@@ -13,29 +13,30 @@ exports.getHome = async (req, res, next) => {
 
     // Lặp qua từng đối tượng dữ liệu
     listbill.forEach(function(item) {
-
+        if (item.status == "Đã hoàn thành") {
         
-        var dateParts = item.date.split("-"); // Tách ngày thành mảng
-        var month = "Tháng "+ parseInt(dateParts[1]); // Lấy phần tử thứ 2 là số tháng
-        var year1 = parseInt(dateParts[2]);  // Lấy phần tử thứ 4 là số năm
+            var dateParts = item.date.split("-"); // Tách ngày thành mảng
+            var month = "Tháng "+ parseInt(dateParts[1]); // Lấy phần tử thứ 2 là số tháng
+            var year1 = parseInt(dateParts[2]);  // Lấy phần tử thứ 4 là số năm
 
-        // Kiểm tra xem tổng cho tháng đã tồn tại chưa, nếu chưa thì khởi tạo
-        
-        if (!totalByMonth[month]) {
-            totalByMonth[month] = 0;
-        }
-
-        // Kiểm tra xem tổng cho năm đã tồn tại chưa, nếu chưa thì khởi tạo
-        if (!totalByYear[year1]) {
-            totalByYear[year1] = 0;
+            // Kiểm tra xem tổng cho tháng đã tồn tại chưa, nếu chưa thì khởi tạo
             
-        }
+            if (!totalByMonth[month]) {
+                totalByMonth[month] = 0;
+            }
 
-        if (year1 =="2023") {
-            totalByMonth[month] += item.total_price; // Cộng tổng tiền cho tháng
+            // Kiểm tra xem tổng cho năm đã tồn tại chưa, nếu chưa thì khởi tạo
+            if (!totalByYear[year1]) {
+                totalByYear[year1] = 0;
+                
+            }
+
+            if (year1 =="2023") {
+                totalByMonth[month] += item.total_price; // Cộng tổng tiền cho tháng
+            }
+            
+            totalByYear[year1] += item.total_price; // Cộng tổng tiền cho năm
         }
-        
-        totalByYear[year1] += item.total_price; // Cộng tổng tiền cho năm
 
     });
 
